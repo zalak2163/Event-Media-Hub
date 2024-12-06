@@ -17,6 +17,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 // Add Swagger services
+// added to check push and pull sync
 builder.Services.AddSwaggerGen();
 
 // Associate service interfaces with their implementations

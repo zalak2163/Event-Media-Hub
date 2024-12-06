@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\SEM2\\C#\\EventAndMediaHub\\EventAndMediaHub\\EventAndMediaHub.csproj": {}
+    "D:\\SEM2\\C#\\Event-Media-Hub\\EventAndMediaHub\\EventAndMediaHub.csproj": {}
   },
   "projects": {
-    "D:\\SEM2\\C#\\EventAndMediaHub\\EventAndMediaHub\\EventAndMediaHub.csproj": {
+    "D:\\SEM2\\C#\\Event-Media-Hub\\EventAndMediaHub\\EventAndMediaHub.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SEM2\\C#\\EventAndMediaHub\\EventAndMediaHub\\EventAndMediaHub.csproj",
+        "projectUniqueName": "D:\\SEM2\\C#\\Event-Media-Hub\\EventAndMediaHub\\EventAndMediaHub.csproj",
         "projectName": "EventAndMediaHub",
-        "projectPath": "D:\\SEM2\\C#\\EventAndMediaHub\\EventAndMediaHub\\EventAndMediaHub.csproj",
+        "projectPath": "D:\\SEM2\\C#\\Event-Media-Hub\\EventAndMediaHub\\EventAndMediaHub.csproj",
         "packagesPath": "C:\\Users\\yashp\\.nuget\\packages\\",
-        "outputPath": "D:\\SEM2\\C#\\EventAndMediaHub\\EventAndMediaHub\\obj\\",
+        "outputPath": "D:\\SEM2\\C#\\Event-Media-Hub\\EventAndMediaHub\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\yashp\\AppData\\Roaming\\NuGet\\NuGet.Config",
