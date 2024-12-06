@@ -1,5 +1,6 @@
 ﻿using EventAndMediaHub.Interface;
 using EventAndMediaHub.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventAndMediaHub.Controllers
@@ -30,12 +31,14 @@ namespace EventAndMediaHub.Controllers
             return View(await _categoryService.GetCategory(id));
         }
 
+        [Authorize]
         public IActionResult New()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create(CategoryDto categoryDto)
         {
             var response = await _categoryService.CreateCategory(categoryDto);
@@ -49,6 +52,7 @@ namespace EventAndMediaHub.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Edit(int id)
         {
             var categoryDto = await _categoryService.GetCategory(id);
@@ -62,6 +66,7 @@ namespace EventAndMediaHub.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Update(int id, CategoryDto categoryDto)
         {
             var response = await _categoryService.UpdateCategory(id, categoryDto);
@@ -75,6 +80,7 @@ namespace EventAndMediaHub.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> ConfirmDelete(int id)
         {
             var categoryDto = await _categoryService.GetCategory(id);
@@ -88,6 +94,7 @@ namespace EventAndMediaHub.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             var response = await _categoryService.DeleteCategory(id);

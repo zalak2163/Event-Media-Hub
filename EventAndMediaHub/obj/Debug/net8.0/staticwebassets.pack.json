@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\EventAndMediaHub.bundle.scp.css"
     },
     {
+      "Id": "D:\\SEM2\\C#\\EventAndMediaHub\\EventAndMediaHub\\wwwroot\\Images\\niagara-falls.jpeg",
+      "PackagePath": "staticwebassets\\Images\\niagara-falls.jpeg"
+    },
+    {
       "Id": "D:\\SEM2\\C#\\EventAndMediaHub\\EventAndMediaHub\\wwwroot\\css\\Eventstyle.css",
       "PackagePath": "staticwebassets\\css\\Eventstyle.css"
     },
