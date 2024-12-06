@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EventAndMediaHub")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a4d530ee70506b355ff6d280117a27443b04b36b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("EventAndMediaHub")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EventAndMediaHub")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
