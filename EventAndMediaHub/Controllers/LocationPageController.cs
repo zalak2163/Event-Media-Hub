@@ -1,5 +1,6 @@
 ﻿using EventAndMediaHub.Interface;
 using EventAndMediaHub.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventAndMediaHub.Controllers
@@ -26,11 +27,14 @@ namespace EventAndMediaHub.Controllers
         {
             return View(await _locationService.GetLocation(id));
         }
+
+        [Authorize]
         public ActionResult New()
         {
             return View();
         }
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Add(LocationDto locationDto)
         {
             ServiceResponse response = await _locationService.CreateLocation(locationDto);
@@ -45,6 +49,7 @@ namespace EventAndMediaHub.Controllers
             }
         }
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Edit(int id)
         {
             LocationDto? LocationDto = await _locationService.GetLocation(id);
@@ -58,6 +63,7 @@ namespace EventAndMediaHub.Controllers
             }
         }
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Update(int id, LocationDto locationDto)
         {
             ServiceResponse response = await _locationService.UpdateLocationDetails(id, locationDto);
@@ -72,6 +78,7 @@ namespace EventAndMediaHub.Controllers
             }
         }
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> ConfirmDelete(int id)
         {
             LocationDto? locationDto = await _locationService.GetLocation(id);
@@ -85,6 +92,7 @@ namespace EventAndMediaHub.Controllers
             }
         }
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             ServiceResponse response = await _locationService.DeleteLocation(id);

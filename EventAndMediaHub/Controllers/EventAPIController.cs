@@ -1,5 +1,6 @@
 ﻿using EventAndMediaHub.Interface;
 using EventAndMediaHub.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,16 +28,19 @@ namespace EventAndMediaHub.Controllers
             return await _eventService.GetEvent(id);
         }
         [HttpPost("Add")]
+        [Authorize]
         public async Task<ServiceResponse> CreateEvent(EventDto eventDto)
         {
             return await _eventService.CreateEvent(eventDto);
         }
         [HttpPut("Update/{id}")]
+        [Authorize]
         public async Task<ServiceResponse> UpdateEventDetails(int id, EventDto eventDto)
         {
             return await _eventService.UpdateEventDetails(id, eventDto);
         }
         [HttpDelete("Delete/{id}")]
+        [Authorize]
         public async Task<ServiceResponse> Deleteevent(int id)
         {
             return await _eventService.Deleteevent(id);

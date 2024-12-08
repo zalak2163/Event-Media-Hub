@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5plaDTXqHsw+BYX1/lIxbVy/zLAO1HsGEGeH9cPfGU+xZUhW3cJFb2vD9KHxHAOJVjC7gaL4SVi7EUkaV9altQ==",
+  "dgSpecHash": "9rHSMZM2ya/WYSOkQxqJZSKJfPq8lAlwX8UY7ESGhkY5LifkH0tYnbyBQdVMbRuGT2YDwYDfdxOnSWLCcvWVtg==",
   "success": true,
-  "projectFilePath": "D:\\SEM2\\C#\\EventAndMediaHub\\EventAndMediaHub\\EventAndMediaHub.csproj",
+  "projectFilePath": "D:\\SEM2\\C#\\newproject\\Event-Media-Hub\\EventAndMediaHub\\EventAndMediaHub.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\yashp\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\yashp\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

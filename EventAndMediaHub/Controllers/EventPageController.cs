@@ -1,36 +1,77 @@
 ﻿using EventAndMediaHub.Interface;
 using EventAndMediaHub.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EventAndMediaHub.Controllers
 {
     public class EventPageController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
         private readonly IEventService _eventService;
 
+        // Constructor
         public EventPageController(IEventService eventService)
         {
             _eventService = eventService;
         }
-        [HttpGet]
-        public async Task<IActionResult> List()
-        {
-            return View(await _eventService.ListEvents());
-        }
-        [HttpGet]
-        public async Task<IActionResult> Details(int id)
-        {
-            return View(await _eventService.GetEvent(id));
-        }
-        public ActionResult New()
+
+        // Index action (optional)
+        public IActionResult Index()
         {
             return View();
         }
+
+        // List of Events
+        [HttpGet]
+        public async Task<IActionResult> List()
+        {
+            var events = await _eventService.ListEvents();
+            return View(events);
+        }
+
+        // Details of an Event
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var eventDto = await _eventService.GetEvent(id);
+            if (eventDto == null)
+            {
+                return View("Error");
+            }
+            return View(eventDto);
+        }
+
+        // New Event Form
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> New()
+        {
+            var model = new EventDto();
+
+            // Fetch locations and users for dropdowns
+            var locations = await _eventService.GetLocations();
+            var users = await _eventService.GetUsers();
+
+            // Populate the dropdown lists for locations and users with 'Id - Name' format
+            model.Locations = locations.Select(l => new SelectListItem
+            {
+                Value = l.LocationId.ToString(),
+                Text = $"{l.LocationId} - {l.LocationName}"
+            }).ToList();
+
+            model.Users = users.Select(u => new SelectListItem
+            {
+                Value = u.UserId.ToString(),
+                Text = $"{u.UserId} - {u.UserName}"
+            }).ToList();
+
+            return View(model);
+        }
+
+        // Create Event (POST)
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create(EventDto eventDto)
         {
             ServiceResponse response = await _eventService.CreateEvent(eventDto);
@@ -44,21 +85,41 @@ namespace EventAndMediaHub.Controllers
                 return View("Error", new ErrorViewModel() { Errors = response.Messages });
             }
         }
+
+        // Edit Event Form (GET)
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Edit(int id)
         {
-            EventDto? EventDto = await _eventService.GetEvent(id);
-
-            if (EventDto == null)
+            var eventDto = await _eventService.GetEvent(id);
+            if (eventDto == null)
             {
                 return View("Error");
             }
-            else
+
+            // Fetch locations and users for dropdowns
+            var locations = await _eventService.GetLocations();
+            var users = await _eventService.GetUsers();
+
+            // Populate the dropdown lists for locations and users with 'Id - Name' format
+            eventDto.Locations = locations.Select(l => new SelectListItem
             {
-                return View(EventDto);
-            }
+                Value = l.LocationId.ToString(),
+                Text = $"{l.LocationId} - {l.LocationName}"
+            }).ToList();
+
+            eventDto.Users = users.Select(u => new SelectListItem
+            {
+                Value = u.UserId.ToString(),
+                Text = $"{u.UserId} - {u.UserName}"
+            }).ToList();
+
+            return View(eventDto);
         }
+
+        // Update Event (POST)
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Update(int id, EventDto eventDto)
         {
             ServiceResponse response = await _eventService.UpdateEventDetails(id, eventDto);
@@ -72,20 +133,23 @@ namespace EventAndMediaHub.Controllers
                 return View("Error", new ErrorViewModel() { Errors = response.Messages });
             }
         }
+
+        // Confirm Event Deletion (GET)
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> ConfirmDelete(int id)
         {
-            EventDto? eventDto = await _eventService.GetEvent(id);
+            var eventDto = await _eventService.GetEvent(id);
             if (eventDto == null)
             {
                 return View("Error");
             }
-            else
-            {
-                return View(eventDto);
-            }
+            return View(eventDto);
         }
+
+        // Delete Event (POST)
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             ServiceResponse response = await _eventService.Deleteevent(id);
