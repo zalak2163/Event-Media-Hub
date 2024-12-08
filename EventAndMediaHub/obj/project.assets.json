@@ -8812,11 +8812,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "D:\\SEM2\\C#\\newproject\\Event-Media-Hub\\EventAndMediaHub\\EventAndMediaHub.csproj",
       "projectName": "EventAndMediaHub",
       "projectPath": "D:\\SEM2\\C#\\newproject\\Event-Media-Hub\\EventAndMediaHub\\EventAndMediaHub.csproj",
       "packagesPath": "C:\\Users\\yashp\\.nuget\\packages\\",
       "outputPath": "D:\\SEM2\\C#\\newproject\\Event-Media-Hub\\EventAndMediaHub\\obj\\",
+=======
+      "projectUniqueName": "D:\\SEM2\\C#\\Event-Media-Hub\\EventAndMediaHub\\EventAndMediaHub.csproj",
+      "projectName": "EventAndMediaHub",
+      "projectPath": "D:\\SEM2\\C#\\Event-Media-Hub\\EventAndMediaHub\\EventAndMediaHub.csproj",
+      "packagesPath": "C:\\Users\\yashp\\.nuget\\packages\\",
+      "outputPath": "D:\\SEM2\\C#\\Event-Media-Hub\\EventAndMediaHub\\obj\\",
+>>>>>>> 205ed8d7bc096109bd17c593c89be110dec441f5
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\yashp\\AppData\\Roaming\\NuGet\\NuGet.Config",
