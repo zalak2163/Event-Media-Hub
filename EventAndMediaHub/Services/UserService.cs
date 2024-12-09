@@ -112,5 +112,10 @@ namespace EventAndMediaHub.Services
 
             return serviceResponse;
         }
+
+        public Task GetUsers()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

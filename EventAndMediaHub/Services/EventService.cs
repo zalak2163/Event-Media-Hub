@@ -16,37 +16,27 @@ namespace EventAndMediaHub.Services
 
         public async Task<IEnumerable<EventDto>> ListEvents()
         {
-            List<Event> events = await _context.Events.ToListAsync();
-
-            List<EventDto> eventDtos = new List<EventDto>();
-            foreach (Event eventItem in events)
+            var events = await _context.Events.ToListAsync();
+            return events.Select(e => new EventDto
             {
-                eventDtos.Add(new EventDto()
-                {
-                    EventId = eventItem.EventId,
-                    EventName = eventItem.EventName,
-                    Date = eventItem.Date,
-                    Description = eventItem.Description,
-                    LocationId = eventItem.LocationId,
-                    LocationName = eventItem.LocationName,
-                    UserId = eventItem.UserId,
-                    UserName = eventItem.UserName,
-                });
-            }
-
-            return eventDtos;
+                EventId = e.EventId,
+                EventName = e.EventName,
+                Date = e.Date,
+                Description = e.Description,
+                LocationId = e.LocationId,
+                LocationName = e.LocationName,
+                UserId = e.UserId,
+                UserName = e.UserName
+            }).ToList();
         }
 
         public async Task<EventDto> GetEvent(int id)
         {
             var eventItem = await _context.Events.FirstOrDefaultAsync(e => e.EventId == id);
-
             if (eventItem == null)
-            {
                 return null;
-            }
 
-            return new EventDto()
+            return new EventDto
             {
                 EventId = eventItem.EventId,
                 EventName = eventItem.EventName,
@@ -55,7 +45,7 @@ namespace EventAndMediaHub.Services
                 LocationId = eventItem.LocationId,
                 LocationName = eventItem.LocationName,
                 UserId = eventItem.UserId,
-                UserName = eventItem.UserName,
+                UserName = eventItem.UserName
             };
         }
 
@@ -63,35 +53,35 @@ namespace EventAndMediaHub.Services
         {
             ServiceResponse serviceResponse = new();
 
-            // Check if the provided LocationName exists in the Locations table
+            // Find Location by LocationId (Improved logic)
             var location = await _context.Locations
-                                          .FirstOrDefaultAsync(l => l.LocationName == eventDto.LocationName);
+                                          .FirstOrDefaultAsync(l => l.LocationId == eventDto.LocationId);
             if (location == null)
             {
                 serviceResponse.Status = ServiceResponse.ServiceStatus.Error;
-                serviceResponse.Messages.Add("Location not found. Please provide a valid LocationName.");
+                serviceResponse.Messages.Add("Location not found.");
                 return serviceResponse;
             }
 
-            // Check if the provided UserName exists in the Users table
+            // Find User by UserId (Improved logic)
             var user = await _context.Users
-                                     .FirstOrDefaultAsync(u => u.UserName == eventDto.UserName);
+                                     .FirstOrDefaultAsync(u => u.UserId == eventDto.UserId);
             if (user == null)
             {
                 serviceResponse.Status = ServiceResponse.ServiceStatus.Error;
-                serviceResponse.Messages.Add("User not found. Please provide a valid UserName.");
+                serviceResponse.Messages.Add("User not found.");
                 return serviceResponse;
             }
 
-            Event eventItem = new Event()
+            var eventItem = new Event
             {
                 EventName = eventDto.EventName,
                 Date = eventDto.Date,
                 Description = eventDto.Description,
-                LocationId = location.LocationId, // Valid LocationId from the table
-                LocationName = location.LocationName,
-                UserId = user.UserId,              // Valid UserId from the table
-                UserName = user.UserName,
+                LocationId = location.LocationId,
+                LocationName = location.LocationName, // Ensure LocationName is set correctly
+                UserId = user.UserId,
+                UserName = user.UserName // Ensure UserName is set correctly
             };
 
             _context.Events.Add(eventItem);
@@ -106,77 +96,91 @@ namespace EventAndMediaHub.Services
 
         public async Task<ServiceResponse> UpdateEventDetails(int id, EventDto eventDto)
         {
-            ServiceResponse serviceResponse = new ServiceResponse();
-
             var existingEvent = await _context.Events.FindAsync(id);
             if (existingEvent == null)
-            {
-                serviceResponse.Status = ServiceResponse.ServiceStatus.NotFound;
-                serviceResponse.Messages.Add("Event not found.");
-                return serviceResponse;
-            }
+                return new ServiceResponse
+                {
+                    Status = ServiceResponse.ServiceStatus.NotFound,
+                    Messages = { "Event not found." }
+                };
 
-            // Check if LocationName is being updated and if it exists in Locations table
-            if (!string.IsNullOrEmpty(eventDto.LocationName) && eventDto.LocationName != existingEvent.LocationName)
+            // Update Location by LocationId (Improved logic)
+            if (eventDto.LocationId != existingEvent.LocationId)
             {
                 var location = await _context.Locations
-                                              .FirstOrDefaultAsync(l => l.LocationName == eventDto.LocationName);
+                                              .FirstOrDefaultAsync(l => l.LocationId == eventDto.LocationId);
                 if (location == null)
                 {
-                    serviceResponse.Status = ServiceResponse.ServiceStatus.Error;
-                    serviceResponse.Messages.Add("Location not found.");
-                    return serviceResponse;
+                    return new ServiceResponse
+                    {
+                        Status = ServiceResponse.ServiceStatus.Error,
+                        Messages = { "Location not found." }
+                    };
                 }
+
                 existingEvent.LocationId = location.LocationId;
-                existingEvent.LocationName = location.LocationName;
+                existingEvent.LocationName = location.LocationName; // Ensure LocationName is updated
             }
 
-            // Check if UserName is being updated and if it exists in Users table
-            if (!string.IsNullOrEmpty(eventDto.UserName) && eventDto.UserName != existingEvent.UserName)
+            // Update User by UserId (Improved logic)
+            if (eventDto.UserId != existingEvent.UserId)
             {
                 var user = await _context.Users
-                                         .FirstOrDefaultAsync(u => u.UserName == eventDto.UserName);
+                                         .FirstOrDefaultAsync(u => u.UserId == eventDto.UserId);
                 if (user == null)
                 {
-                    serviceResponse.Status = ServiceResponse.ServiceStatus.Error;
-                    serviceResponse.Messages.Add("User not found.");
-                    return serviceResponse;
+                    return new ServiceResponse
+                    {
+                        Status = ServiceResponse.ServiceStatus.Error,
+                        Messages = { "User not found." }
+                    };
                 }
+
                 existingEvent.UserId = user.UserId;
-                existingEvent.UserName = user.UserName;
+                existingEvent.UserName = user.UserName; // Ensure UserName is updated
             }
 
-            // Update other properties
+            // Update other fields
             existingEvent.EventName = eventDto.EventName ?? existingEvent.EventName;
             existingEvent.Date = eventDto.Date != default ? eventDto.Date : existingEvent.Date;
             existingEvent.Description = eventDto.Description ?? existingEvent.Description;
 
-            // Save changes to the database
             await _context.SaveChangesAsync();
 
-            serviceResponse.Status = ServiceResponse.ServiceStatus.Updated;
-            serviceResponse.Messages.Add($"Event updated successfully: {existingEvent.EventName}");
-
-            return serviceResponse;
+            return new ServiceResponse
+            {
+                Status = ServiceResponse.ServiceStatus.Updated,
+                Messages = { $"Event updated successfully: {existingEvent.EventName}" }
+            };
         }
 
         public async Task<ServiceResponse> Deleteevent(int id)
         {
-            ServiceResponse response = new();
             var eventItem = await _context.Events.FindAsync(id);
             if (eventItem == null)
-            {
-                response.Status = ServiceResponse.ServiceStatus.NotFound;
-                response.Messages.Add("Event cannot be deleted because it does not exist.");
-                return response;
-            }
+                return new ServiceResponse
+                {
+                    Status = ServiceResponse.ServiceStatus.NotFound,
+                    Messages = { "Event cannot be deleted because it does not exist." }
+                };
 
             _context.Events.Remove(eventItem);
             await _context.SaveChangesAsync();
-            response.Status = ServiceResponse.ServiceStatus.Deleted;
-            response.Messages.Add("Event deleted successfully.");
+            return new ServiceResponse
+            {
+                Status = ServiceResponse.ServiceStatus.Deleted,
+                Messages = { "Event deleted successfully." }
+            };
+        }
 
-            return response;
+        public async Task<List<Location>> GetLocations()
+        {
+            return await _context.Locations.ToListAsync();
+        }
+
+        public async Task<List<User>> GetUsers()
+        {
+            return await _context.Users.ToListAsync();
         }
     }
 }

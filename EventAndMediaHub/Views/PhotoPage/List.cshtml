@@ -16,6 +16,7 @@
             <th>@Html.DisplayNameFor(model => model.First().Description)</th>
             <th>@Html.DisplayNameFor(model => model.First().Price)</th>
             <th>@Html.DisplayNameFor(model => model.First().UploadDate)</th>
+            <th>@Html.DisplayNameFor(model => model.First().UserId)</th>
             <th>@Html.DisplayNameFor(model => model.First().UserName)</th>
             <th></th>
         </tr>
@@ -29,6 +30,7 @@
                 <td>@Html.DisplayFor(modelItem => item.Description)</td>
                 <td>@Html.DisplayFor(modelItem => item.Price)</td>
                 <td>@Html.DisplayFor(modelItem => item.UploadDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.UserId)</td>
                 <td>@Html.DisplayFor(modelItem => item.UserName)</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.PhotoId">Edit</a> |

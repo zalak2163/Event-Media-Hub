@@ -1,11 +1,13 @@
 ﻿using EventAndMediaHub.Interface;
 using EventAndMediaHub.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventAndMediaHub.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
     public class CategoryAPIController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
@@ -28,18 +30,21 @@ namespace EventAndMediaHub.Controllers
         }
 
         [HttpPost("Add")]
+        [Authorize]
         public async Task<ServiceResponse> CreateCategory(CategoryDto categoryDto)
         {
             return await _categoryService.CreateCategory(categoryDto);
         }
 
         [HttpPut("Update/{id}")]
+        [Authorize]
         public async Task<ServiceResponse> UpdateCategory(int id, CategoryDto categoryDto)
         {
             return await _categoryService.UpdateCategory(id, categoryDto);
         }
 
         [HttpDelete("Delete/{id}")]
+        [Authorize]
         public async Task<ServiceResponse> DeleteCategory(int id)
         {
             return await _categoryService.DeleteCategory(id);

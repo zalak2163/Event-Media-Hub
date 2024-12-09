@@ -9,5 +9,6 @@ namespace EventAndMediaHub.Interface
         Task<ServiceResponse> CreateUser(UserDto userDto);
         Task<ServiceResponse> UpdateUserDetails(int id, UserDto userDto);
         Task<ServiceResponse> DeleteUser(int id);
+       
     }
 }
