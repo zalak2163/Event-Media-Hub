@@ -1,17 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "D:\\SEM2\\C#\\EventAndMediaHub\\EventAndMediaHub\\EventAndMediaHub.csproj": {}
+<<<<<<< HEAD
+    "D:\\SEM2\\C#\\newproject\\Event-Media-Hub\\EventAndMediaHub\\EventAndMediaHub.csproj": {}
   },
   "projects": {
-    "D:\\SEM2\\C#\\EventAndMediaHub\\EventAndMediaHub\\EventAndMediaHub.csproj": {
+    "D:\\SEM2\\C#\\newproject\\Event-Media-Hub\\EventAndMediaHub\\EventAndMediaHub.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SEM2\\C#\\EventAndMediaHub\\EventAndMediaHub\\EventAndMediaHub.csproj",
+        "projectUniqueName": "D:\\SEM2\\C#\\newproject\\Event-Media-Hub\\EventAndMediaHub\\EventAndMediaHub.csproj",
         "projectName": "EventAndMediaHub",
-        "projectPath": "D:\\SEM2\\C#\\EventAndMediaHub\\EventAndMediaHub\\EventAndMediaHub.csproj",
+        "projectPath": "D:\\SEM2\\C#\\newproject\\Event-Media-Hub\\EventAndMediaHub\\EventAndMediaHub.csproj",
         "packagesPath": "C:\\Users\\yashp\\.nuget\\packages\\",
-        "outputPath": "D:\\SEM2\\C#\\EventAndMediaHub\\EventAndMediaHub\\obj\\",
+        "outputPath": "D:\\SEM2\\C#\\newproject\\Event-Media-Hub\\EventAndMediaHub\\obj\\",
+=======
+    "D:\\SEM2\\C#\\Event-Media-Hub\\EventAndMediaHub\\EventAndMediaHub.csproj": {}
+  },
+  "projects": {
+    "D:\\SEM2\\C#\\Event-Media-Hub\\EventAndMediaHub\\EventAndMediaHub.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\SEM2\\C#\\Event-Media-Hub\\EventAndMediaHub\\EventAndMediaHub.csproj",
+        "projectName": "EventAndMediaHub",
+        "projectPath": "D:\\SEM2\\C#\\Event-Media-Hub\\EventAndMediaHub\\EventAndMediaHub.csproj",
+        "packagesPath": "C:\\Users\\yashp\\.nuget\\packages\\",
+        "outputPath": "D:\\SEM2\\C#\\Event-Media-Hub\\EventAndMediaHub\\obj\\",
+>>>>>>> 205ed8d7bc096109bd17c593c89be110dec441f5
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\yashp\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,25 +54,39 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter": {
+              "target": "Package",
+              "version": "[8.0.11, )"
+            },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.0.11, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.0.11, )"
             },
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.0.11, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.0.11, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[8.0.11, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.0.11, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[8.0.7, )"
             },
             "Swashbuckle.AspNetCore.SwaggerGen": {
               "target": "Package",

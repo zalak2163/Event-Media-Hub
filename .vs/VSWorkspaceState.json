@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+>>>>>>> cccc5b6631e9752ad3dd3a21c353fe1b91fe10d2
+=======
 >>>>>>> cccc5b6631e9752ad3dd3a21c353fe1b91fe10d2
     "",
     "\\EventAndMediaHub",
@@ -13,12 +16,18 @@
   ],
   "SelectedNode": "\\EventAndMediaHub\\Views\\EventPage\\New.cshtml",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> cccc5b6631e9752ad3dd3a21c353fe1b91fe10d2
 =======
     ""
   ],
   "SelectedNode": "\\EventAndMediaHub.sln",
 >>>>>>> 205ed8d7bc096109bd17c593c89be110dec441f5
+<<<<<<< HEAD
+>>>>>>> cccc5b6631e9752ad3dd3a21c353fe1b91fe10d2
+=======
 >>>>>>> cccc5b6631e9752ad3dd3a21c353fe1b91fe10d2
   "PreviewInSolutionExplorer": false
 }
