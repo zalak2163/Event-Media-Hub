@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\EventAndMediaHub",
+    "\\EventAndMediaHub\\Controllers",
+    "\\EventAndMediaHub\\Views",
+    "\\EventAndMediaHub\\Views\\EventPage",
+    "\\EventAndMediaHub\\Views\\PhotoPage"
+  ],
+  "SelectedNode": "\\EventAndMediaHub\\Views\\EventPage\\New.cshtml",
+  "PreviewInSolutionExplorer": false
+}
