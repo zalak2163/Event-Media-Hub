@@ -9,6 +9,7 @@ namespace EventAndMediaHub.Interface
         Task<ServiceResponse> CreateEvent(EventDto eventDto);
         Task<ServiceResponse> UpdateEventDetails(int id, EventDto eventDto);
         Task<ServiceResponse> Deleteevent(int id);
-
+        Task<List<Location>> GetLocations();
+        Task<List<User>> GetUsers();
     }
 }
