@@ -1,0 +1,52 @@
+﻿@model Event_Media_Hub_Group_Project.Models.UserDto
+
+@{
+    ViewData["Title"] = "Edit User";
+}
+
+<h1 id="EditUserTitle">Edit User</h1>
+
+<div class="row" id="EditUserFormSection">
+    <div class="col-md-4">
+        <form asp-action="Update" asp-route-id="@Model.UserId" id="EditUserForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger" id="ValidationSummary"></div>
+            <input type="hidden" asp-for="UserId" id="UserId" />
+
+            <!-- User Name -->
+            <div class="form-group" id="UserNameGroup">
+                <label asp-for="UserName" class="control-label" id="UserNameLabel">User Name:</label>
+                <input asp-for="UserName" class="form-control" placeholder="Enter user name" id="UserName" />
+                <span asp-validation-for="UserName" class="text-danger" id="UserNameError"></span>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group" id="EmailGroup">
+                <label asp-for="Email" class="control-label" id="EmailLabel">Email:</label>
+                <input asp-for="Email" class="form-control" placeholder="Enter email" id="Email" />
+                <span asp-validation-for="Email" class="text-danger" id="EmailError"></span>
+            </div>
+
+            <!-- Role -->
+            <div class="form-group" id="RoleGroup">
+                <label asp-for="Role" class="control-label" id="RoleLabel">Role:</label>
+                <input asp-for="Role" class="form-control" placeholder="Enter role" id="Role" />
+                <span asp-validation-for="Role" class="text-danger" id="RoleError"></span>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group" id="SubmitButtonGroup">
+                <input type="submit" value="Save" class="btn btn-primary" id="SaveButton" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="BackToListSection">
+    <a asp-action="List" class="btn btn-primary" id="BackToListButton">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

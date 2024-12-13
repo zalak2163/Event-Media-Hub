@@ -1,0 +1,40 @@
+﻿@model Event_Media_Hub_Group_Project.Models.CategoryDto
+@{
+    ViewData["Title"] = "Edit Category";
+}
+
+<h1 id="edit-category-title">Edit Category</h1>
+
+<div id="edit-category-card" class="card">
+    <div class="card-header">
+        <h4 id="category-title">Category</h4>
+    </div>
+    <div class="card-body">
+        <hr />
+        <div class="row">
+            <div class="col-md-8">
+                <form asp-action="Update" asp-route-id="@Model.CategoryId" id="edit-category-form">
+                    <div asp-validation-summary="ModelOnly" class="text-danger" id="validation-summary"></div>
+                    <input type="hidden" asp-for="CategoryId" />
+                    <div class="form-group" id="category-name-group">
+                        <label asp-for="CategoryName" class="control-label" id="category-name-label">Category Name:</label>
+                        <input asp-for="CategoryName" class="form-control" placeholder="@Model.CategoryName" id="category-name-input" />
+                        <span asp-validation-for="CategoryName" class="text-danger" id="category-name-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" id="save-button" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <a asp-action="List" class="btn btn-secondary" id="back-to-list-button">Back to List</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

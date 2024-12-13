@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Event-Media-Hub-Group-Project.props" />
+</Project>

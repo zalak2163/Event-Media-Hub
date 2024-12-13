@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Event_Media_Hub_Group_Project.Models.PhotoDto>
+@{
+    ViewData["Title"] = "List of Photos";
+}
+
+<h1 class="mb-4">Photos</h1>
+
+<p>
+    <a asp-action="New" class="btn btn-success">Create New Photo</a>
+</p>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4" style="width: 18rem;">
+                @* Display the image at the top of the card *@
+                <img src="@Url.Content("~/images/zalak.JPG")" class="card-img-top" alt="@item.Title" />
+
+                <div class="card-body">
+                    <h5 class="card-title">@item.Title</h5>
+                    <p class="card-text"><strong>Photo ID:</strong> @item.PhotoId</p>
+                    <p class="card-text"><strong>Description:</strong> @item.Description</p>
+                    <p class="card-text"><strong>Price:</strong> @item.Price</p>
+                    <p class="card-text"><strong>Upload Date:</strong> @item.UploadDate.ToString("yyyy-MM-dd")</p>
+                    <p class="card-text"><strong>User:</strong> @item.UserName</p>
+                </div>
+
+                <div class="card-footer text-right">
+                    <a asp-action="Edit" asp-route-id="@item.PhotoId" class="btn btn-sm btn-primary">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.PhotoId" class="btn btn-sm btn-info">Details</a> |
+                    <a asp-action="ConfirmDelete" asp-route-id="@item.PhotoId" class="btn btn-sm btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="mt-4">
+    <a asp-action="List" class="btn btn-secondary">Back to List</a>
+</div>

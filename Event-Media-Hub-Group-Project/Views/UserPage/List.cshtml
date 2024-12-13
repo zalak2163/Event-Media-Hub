@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Event_Media_Hub_Group_Project.Models.UserDto>
+@{
+    ViewData["Title"] = "User List";
+}
+
+<h1 class="mb-4">User List</h1>
+
+<p>
+    <a asp-action="New" class="btn btn-success">Create New User</a>
+</p>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5>@item.UserName</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>User ID:</strong> @item.UserId</p>
+                    <p><strong>Email:</strong> @item.Email</p>
+                    <p><strong>Role:</strong> @item.Role</p>
+                </div>
+                <div class="card-footer text-right">
+                    <a asp-action="Edit" asp-route-id="@item.UserId" class="btn btn-sm btn-primary">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.UserId" class="btn btn-sm btn-info">Details</a> |
+                    <a asp-action="ConfirmDelete" asp-route-id="@item.UserId" class="btn btn-sm btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="mt-4">
+    <a asp-action="List" class="btn btn-secondary">Back to List</a>
+</div>

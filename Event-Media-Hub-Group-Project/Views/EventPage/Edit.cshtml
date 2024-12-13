@@ -1,0 +1,78 @@
+﻿@model Event_Media_Hub_Group_Project.Models.EventDto
+
+@{
+    ViewData["Title"] = "Edit Event";
+}
+
+<h1>Edit Event</h1>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5>Edit Event Details</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="Update" asp-route-id="@Model.EventId">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="EventId" />
+
+                    <!-- Event Name -->
+                    <div class="form-group">
+                        <label asp-for="EventName" class="control-label">Event Name:</label>
+                        <input asp-for="EventName" class="form-control" placeholder="@Model.EventName" />
+                        <span asp-validation-for="EventName" class="text-danger"></span>
+                    </div>
+
+                    <!-- Event Date -->
+                    <div class="form-group">
+                        <label asp-for="Date" class="control-label">Date:</label>
+                        <input asp-for="Date" class="form-control" placeholder="@Model.Date.ToString("yyyy-MM-dd")" type="date" />
+                        <span asp-validation-for="Date" class="text-danger"></span>
+                    </div>
+
+                    <!-- Event Description -->
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label">Description:</label>
+                        <input asp-for="Description" class="form-control" placeholder="@Model.Description" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <!-- Location Dropdown -->
+                    <div class="form-group">
+                        <label asp-for="LocationId" class="control-label">Location:</label>
+                        @Html.DropDownListFor(m => m.LocationId,
+                                 Model.Locations,
+                                 "-- Select Location --",
+                                 new { @class = "form-control" })
+                        <span asp-validation-for="LocationId" class="text-danger"></span>
+                    </div>
+
+                    <!-- User Dropdown -->
+                    <div class="form-group">
+                        <label asp-for="UserId" class="control-label">User:</label>
+                        @Html.DropDownListFor(m => m.UserId,
+                                 Model.Users,
+                                 "-- Select User --",
+                                 new { @class = "form-control" })
+                        <span asp-validation-for="UserId" class="text-danger"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-right">
+                <a asp-action="List" class="btn btn-secondary btn-sm">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,52 @@
+﻿@model Event_Media_Hub_Group_Project.Models.UserDto
+
+@{
+    ViewData["Title"] = "New";
+}
+
+<h1 id="CreateUserTitle">Create New User</h1>
+<hr />
+<div class="row" id="CreateUserRow">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post" id="CreateUserForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger" id="ValidationSummary"></div>
+
+            <!-- User Name -->
+            <div class="form-group" id="UserNameGroup">
+                <label asp-for="UserName" class="control-label" id="UserNameLabel">User Name:</label>
+                <input asp-for="UserName" class="form-control" id="UserNameInput" placeholder="Enter user name" />
+                <span asp-validation-for="UserName" class="text-danger" id="UserNameError"></span>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group" id="EmailGroup">
+                <label asp-for="Email" class="control-label" id="EmailLabel">Email:</label>
+                <input asp-for="Email" class="form-control" id="EmailInput" placeholder="Enter email" />
+                <span asp-validation-for="Email" class="text-danger" id="EmailError"></span>
+            </div>
+
+            <!-- Role -->
+            <div class="form-group" id="RoleGroup">
+                <label asp-for="Role" class="control-label" id="RoleLabel">Role:</label>
+                <input asp-for="Role" class="form-control" id="RoleInput" placeholder="Enter role" />
+                <span asp-validation-for="Role" class="text-danger" id="RoleError"></span>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group" id="SubmitButtonGroup">
+                <input type="submit" value="Create" class="btn btn-primary" id="CreateButton" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Back Link -->
+<div id="BackLinkContainer">
+    <a asp-action="List" class="btn btn-primary" id="BackToListButton">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,63 @@
+﻿@model Event_Media_Hub_Group_Project.Models.PhotoDto
+@{
+    ViewData["Title"] = "Confirm Delete";
+}
+
+<h1 class="mb-4">Confirm Delete</h1>
+
+<div class="card">
+    <div class="card-header bg-danger text-white">
+        <h4>Are you sure you want to delete this photo?</h4>
+    </div>
+    <div class="card-body">
+        <h5>Photo Details</h5>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.UploadDate)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.UploadDate)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.UserId)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.UserId)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+        </dl>
+
+        <div class="d-flex justify-content-between">
+            <form asp-action="Delete" asp-route-id="@Model.PhotoId">
+                <input type="hidden" asp-for="PhotoId" />
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            <a asp-action="List" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>
+

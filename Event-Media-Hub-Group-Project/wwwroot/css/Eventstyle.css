@@ -1,0 +1,208 @@
+﻿/* General Body Styles */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #d0f0c0; /* Soft pastel green */
+    color: #2b3e5d; /* Dark slate text color for readability */
+}
+
+/* Container */
+.container {
+    max-width: 1600px; /* Increased width for a broader layout */
+    margin: auto;
+    padding: 30px; /* Extra padding for spaciousness */
+    background-color: #ffffff; /* Clean white background for contrast */
+    border-radius: 15px; /* Rounded corners for a soft look */
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.1); /* Soft, subtle shadow for depth */
+}
+
+    /* Add a hover effect for the container */
+    .container:hover {
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2); /* Slightly bigger shadow on hover */
+    }
+
+/* Headings */
+h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #3b6fa0; /* Soft blue-gray */
+}
+
+/* Tables */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+    .table th, .table td {
+        padding: 18px;
+        border: 1px solid #f0f3f7;
+        text-align: left;
+        font-size: 1.1rem;
+    }
+
+    .table th {
+        background-color: #6b8ca7; /* Light grayish-blue */
+        color: white;
+        font-weight: 600;
+    }
+
+    .table tr:nth-child(even) {
+        background-color: #f9f9f9; /* Soft alternating row colors */
+    }
+
+    .table tr:hover {
+        background-color: #f1f3f7; /* Subtle hover effect */
+    }
+
+/* Button Container: Align buttons horizontally */
+.button-container {
+    display: flex;
+    justify-content: flex-start; /* Align buttons to the left */
+    gap: 20px; /* Adds spacing between buttons */
+    flex-wrap: wrap; /* Allows wrapping if needed on smaller screens */
+    margin-top: 20px; /* Adds space from other content */
+}
+
+/* Common Button Styles */
+.btn {
+    padding: 12px 28px; /* Increased padding for more space inside buttons */
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px; /* Uniform border radius for all buttons */
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    display: inline-block;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for buttons */
+}
+
+/* Primary Button */
+.btn-primary {
+    background-color: #5f80b5;
+    color: white;
+}
+
+    .btn-primary:hover {
+        background-color: #4e6993;
+        transform: translateY(-4px); /* Hover effect */
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Increased shadow on hover */
+    }
+
+/* Create New Button */
+.btn-create {
+    background-color: #59bdb8;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+    .btn-create:hover {
+        background-color: #4ea799;
+        transform: translateY(-4px);
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+/* Edit Button */
+.btn-edit {
+    background-color: #f59e0b; /* Orange color for Edit */
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+    .btn-edit:hover {
+        background-color: #e6891f; /* Darker orange */
+        transform: translateY(-4px); /* Slightly bigger hover effect */
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Shadow effect */
+    }
+
+/* Delete Button */
+.btn-delete {
+    background-color: #e74c3c;
+    color: white;
+}
+
+    .btn-delete:hover {
+        background-color: #c0392b;
+        transform: translateY(-4px);
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+/* Details Button */
+.btn-details {
+    background-color: #007bff; /* A vibrant blue for Details */
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+    .btn-details:hover {
+        background-color: #0056b3; /* Darker blue */
+        transform: translateY(-4px); /* Slightly bigger hover effect */
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Shadow effect */
+    }
+
+/* Validation Messages */
+.text-danger {
+    color: #e74c3c; /* Red error message */
+}
+
+/* Links */
+a {
+    color: #5f80b5;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+/* Footer and Navigation Links */
+div > a {
+    display: inline-block;
+    margin-top: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* Adjust container padding for small screens */
+    .container {
+        padding: 10px;
+    }
+
+    /* Adjust the font size for headings */
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    /* Adjust table padding for small screens */
+    .table th, .table td {
+        padding: 12px;
+    }
+
+    /* Adjust the button sizes for small screens */
+    .btn {
+        padding: 12px 20px; /* More padding for buttons */
+        font-size: 1rem;
+    }
+
+    /* Adjust form padding for small screens */
+    .form-group {
+        padding: 10px;
+    }
+
+    /* Adjust button container for smaller screens */
+    .button-container {
+        flex-direction: column; /* Stack buttons vertically */
+        align-items: center; /* Center the buttons */
+    }
+}

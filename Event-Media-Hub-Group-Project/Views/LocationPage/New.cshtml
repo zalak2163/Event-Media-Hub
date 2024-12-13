@@ -1,0 +1,56 @@
+﻿@model Event_Media_Hub_Group_Project.Models.LocationDto
+@{
+    ViewData["Title"] = "Create New Location";
+}
+
+<h1 class="mb-4">Create New Location</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4>Location Details</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Add">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <!-- Location Name -->
+                    <div class="form-group">
+                        <label asp-for="LocationName" class="control-label">Location Name:</label>
+                        <input asp-for="LocationName" class="form-control" placeholder="Enter location name" />
+                        <span asp-validation-for="LocationName" class="text-danger"></span>
+                    </div>
+
+                    <!-- Address -->
+                    <div class="form-group">
+                        <label asp-for="Address" class="control-label">Address:</label>
+                        <input asp-for="Address" class="form-control" placeholder="Enter address" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+
+                    <!-- Capacity -->
+                    <div class="form-group">
+                        <label asp-for="Capacity" class="control-label">Capacity:</label>
+                        <input asp-for="Capacity" class="form-control" type="number" placeholder="Enter capacity" />
+                        <span asp-validation-for="Capacity" class="text-danger"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-group">
+                        <input type="submit" value="Create Location" class="btn btn-success btn-block" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-action="List" class="btn btn-secondary">Back to List</a>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
