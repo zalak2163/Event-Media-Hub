@@ -5,15 +5,26 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Event_Media_Hub_Group_Project.Services
 {
+    /// <summary>
+    /// Service for managing user data, including CRUD operations and user details.
+    /// </summary>
     public class UserService : IUserService
     {
         private readonly ApplicationDbContext _context;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserService"/> class.
+        /// </summary>
+        /// <param name="context">The database context.</param>
         public UserService(ApplicationDbContext context)
         {
             _context = context;
         }
 
+        /// <summary>
+        /// Retrieves a list of all users.
+        /// </summary>
+        /// <returns>A list of <see cref="UserDto"/> representing users.</returns>
         public async Task<IEnumerable<UserDto>> ListUsers()
         {
             var users = await _context.Users.ToListAsync();
@@ -29,6 +40,11 @@ namespace Event_Media_Hub_Group_Project.Services
             return userDtos;
         }
 
+        /// <summary>
+        /// Retrieves a specific user by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the user to retrieve.</param>
+        /// <returns>A <see cref="UserDto"/> representing the user, or null if not found.</returns>
         public async Task<UserDto> GetUser(int id)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == id);
@@ -47,6 +63,11 @@ namespace Event_Media_Hub_Group_Project.Services
             };
         }
 
+        /// <summary>
+        /// Creates a new user.
+        /// </summary>
+        /// <param name="userDto">The <see cref="UserDto"/> containing the user details to create.</param>
+        /// <returns>A <see cref="ServiceResponse"/> indicating the result of the operation.</returns>
         public async Task<ServiceResponse> CreateUser(UserDto userDto)
         {
             var serviceResponse = new ServiceResponse();
@@ -68,6 +89,12 @@ namespace Event_Media_Hub_Group_Project.Services
             return serviceResponse;
         }
 
+        /// <summary>
+        /// Updates the details of an existing user by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the user to update.</param>
+        /// <param name="userDto">The <see cref="UserDto"/> containing the updated user details.</param>
+        /// <returns>A <see cref="ServiceResponse"/> indicating the result of the operation.</returns>
         public async Task<ServiceResponse> UpdateUserDetails(int id, UserDto userDto)
         {
             var serviceResponse = new ServiceResponse();
@@ -92,6 +119,11 @@ namespace Event_Media_Hub_Group_Project.Services
             return serviceResponse;
         }
 
+        /// <summary>
+        /// Deletes a user by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the user to delete.</param>
+        /// <returns>A <see cref="ServiceResponse"/> indicating the result of the operation.</returns>
         public async Task<ServiceResponse> DeleteUser(int id)
         {
             var serviceResponse = new ServiceResponse();
@@ -113,7 +145,11 @@ namespace Event_Media_Hub_Group_Project.Services
             return serviceResponse;
         }
 
-        public async Task<IEnumerable<UserDto>> GetUsers() // Implementing the method
+        /// <summary>
+        /// Retrieves a list of all users.
+        /// </summary>
+        /// <returns>A list of <see cref="UserDto"/> representing users.</returns>
+        public async Task<IEnumerable<UserDto>> GetUsers()
         {
             var users = await _context.Users.ToListAsync();
 
@@ -126,6 +162,10 @@ namespace Event_Media_Hub_Group_Project.Services
             }).ToList();
         }
 
+        /// <summary>
+        /// Placeholder method to retrieve all users (not implemented).
+        /// </summary>
+        /// <returns>Throws <see cref="NotImplementedException"/>.</returns>
         public IEnumerable<User> GetAllUsers()
         {
             throw new NotImplementedException();

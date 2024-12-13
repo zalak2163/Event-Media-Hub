@@ -1,52 +1,55 @@
-﻿@model Event_Media_Hub_Group_Project.Models.UserDto
+﻿@model Event_Media_Hub_Group_Project.Models.UserDto  // This view works with a UserDto model to create a new user.
 
 @{
-    ViewData["Title"] = "New";
+    ViewData["Title"] = "New";  // Sets the title of the page to "New" (for creating a new user)
 }
 
-<h1 id="CreateUserTitle">Create New User</h1>
-<hr />
+<h1 id="CreateUserTitle">Create New User</h1>  <!-- Title for the page -->
+
+<hr />  <!-- Horizontal line to separate the title from the form -->
+<!-- Row containing the form for creating a new user -->
 <div class="row" id="CreateUserRow">
     <div class="col-md-4">
+        <!-- Form will take up 4 columns on medium screens -->
         <form asp-action="Create" method="post" id="CreateUserForm">
-            <div asp-validation-summary="ModelOnly" class="text-danger" id="ValidationSummary"></div>
-
-            <!-- User Name -->
+            <!-- Form to post data to the 'Create' action -->
+            <div asp-validation-summary="ModelOnly" class="text-danger" id="ValidationSummary"></div>  <!-- Displays validation errors -->
+            <!-- User Name Field -->
             <div class="form-group" id="UserNameGroup">
                 <label asp-for="UserName" class="control-label" id="UserNameLabel">User Name:</label>
-                <input asp-for="UserName" class="form-control" id="UserNameInput" placeholder="Enter user name" />
-                <span asp-validation-for="UserName" class="text-danger" id="UserNameError"></span>
+                <input asp-for="UserName" class="form-control" id="UserNameInput" placeholder="Enter user name" />  <!-- Input field for user name -->
+                <span asp-validation-for="UserName" class="text-danger" id="UserNameError"></span>  <!-- Error message for UserName field -->
             </div>
 
-            <!-- Email -->
+            <!-- Email Field -->
             <div class="form-group" id="EmailGroup">
                 <label asp-for="Email" class="control-label" id="EmailLabel">Email:</label>
-                <input asp-for="Email" class="form-control" id="EmailInput" placeholder="Enter email" />
-                <span asp-validation-for="Email" class="text-danger" id="EmailError"></span>
+                <input asp-for="Email" class="form-control" id="EmailInput" placeholder="Enter email" />  <!-- Input field for email -->
+                <span asp-validation-for="Email" class="text-danger" id="EmailError"></span>  <!-- Error message for Email field -->
             </div>
 
-            <!-- Role -->
+            <!-- Role Field -->
             <div class="form-group" id="RoleGroup">
                 <label asp-for="Role" class="control-label" id="RoleLabel">Role:</label>
-                <input asp-for="Role" class="form-control" id="RoleInput" placeholder="Enter role" />
-                <span asp-validation-for="Role" class="text-danger" id="RoleError"></span>
+                <input asp-for="Role" class="form-control" id="RoleInput" placeholder="Enter role" />  <!-- Input field for user role -->
+                <span asp-validation-for="Role" class="text-danger" id="RoleError"></span>  <!-- Error message for Role field -->
             </div>
 
             <!-- Submit Button -->
             <div class="form-group" id="SubmitButtonGroup">
-                <input type="submit" value="Create" class="btn btn-primary" id="CreateButton" />
+                <input type="submit" value="Create" class="btn btn-primary" id="CreateButton" />  <!-- Button to submit the form and create the user -->
             </div>
         </form>
     </div>
 </div>
 
-<!-- Back Link -->
+<!-- Back Link: Button to navigate back to the user list page -->
 <div id="BackLinkContainer">
-    <a asp-action="List" class="btn btn-primary" id="BackToListButton">Back to List</a>
+    <a asp-action="List" class="btn btn-primary" id="BackToListButton">Back to List</a>  <!-- Link to go back to the list of users -->
 </div>
 
 @section Scripts {
     @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");  // Includes client-side validation scripts
     }
 }

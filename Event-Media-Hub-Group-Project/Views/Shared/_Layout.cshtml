@@ -4,32 +4,34 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Event_Media_Hub_Group_Project</title>
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Eventstyle.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Event_Media_Hub_Group_Project.styles.css" asp-append-version="true" />
+
     <style>
         /* Custom Navbar Styles */
         .navbar {
             background-color: #004085; /* Dark blue background */
         }
 
-        .navbar .navbar-brand, 
-        .navbar .nav-link {
-            color: black !important; /* White text for navbar items */
-            font-family: 'Arial', sans-serif; /* Custom font family */
-        }
+            .navbar .navbar-brand,
+            .navbar .nav-link {
+                color: black !important; /* White text for navbar items */
+                font-family: 'Arial', sans-serif; /* Custom font family */
+            }
 
-        .navbar .nav-link:hover {
-            color: #f8f9fa !important; /* Light gray text color on hover */
-            background-color: #0056b3; /* Change background color on hover */
-            border-radius: 4px; /* Rounded corners for hover effect */
-        }
+                .navbar .nav-link:hover {
+                    color: #f8f9fa !important; /* Light gray text color on hover */
+                    background-color: #0056b3; /* Change background color on hover */
+                    border-radius: 4px; /* Rounded corners for hover effect */
+                }
 
-        .navbar .nav-item.active .nav-link {
-            color: #ffcc00 !important; /* Highlight active item with a gold color */
-            font-weight: bold; /* Bold font for active menu item */
-        }
+            .navbar .nav-item.active .nav-link {
+                color: #ffcc00 !important; /* Highlight active item with a gold color */
+                font-weight: bold; /* Bold font for active menu item */
+            }
 
         .navbar-toggler-icon {
             background-color: #ffffff; /* Make the toggler icon white */
@@ -42,29 +44,32 @@
             text-align: center;
         }
 
-        footer a {
-            color: #004085;
-            text-decoration: none;
-        }
+            footer a {
+                color: #004085;
+                text-decoration: none;
+            }
 
-        footer a:hover {
-            color: #0056b3;
-            text-decoration: underline;
-        }
+                footer a:hover {
+                    color: #0056b3;
+                    text-decoration: underline;
+                }
 
-        
     </style>
 </head>
 <body>
     <header>
+        <!-- Navbar - navigation menu at the top of the page -->
         <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
+                <!-- Branding logo and link to home page -->
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Event_Media_Hub_Group_Project</a>
+                <!-- Navbar toggler for smaller screen sizes (mobile) -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <!-- Navigation Links -->
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
@@ -94,25 +99,34 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="PhotoPage" asp-action="List">Photo</a>
                         </li>
                     </ul>
+                    <!-- Login Partial (used for displaying login/logout) -->
                     <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
     </header>
+
+    <!-- Main Content Area -->
     <div class="container">
         <main role="main" class="pb-3">
-            @RenderBody()
+            @RenderBody() <!-- Render the body content from the individual views -->
         </main>
     </div>
 
+    <!-- Footer Section -->
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - Event_Media_Hub_Group_Project - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2024 - Event_Media_Hub_Group_Project -
+            <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
+    <!-- JavaScript Files -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <!-- Render additional scripts if required -->
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

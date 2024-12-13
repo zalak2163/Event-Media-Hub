@@ -5,6 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Event_Media_Hub_Group_Project.Services
 {
+    /// <summary>
+    /// Service for managing events, including CRUD operations and handling event details.
+    /// </summary>
     public class EventService : IEventService
     {
         private readonly ApplicationDbContext _context;
@@ -14,6 +17,10 @@ namespace Event_Media_Hub_Group_Project.Services
             _context = context;
         }
 
+        /// <summary>
+        /// Retrieves a list of all events.
+        /// </summary>
+        /// <returns>A list of <see cref="EventDto"/> representing events.</returns>
         public async Task<IEnumerable<EventDto>> ListEvents()
         {
             var events = await _context.Events.ToListAsync();
@@ -30,6 +37,11 @@ namespace Event_Media_Hub_Group_Project.Services
             }).ToList();
         }
 
+        /// <summary>
+        /// Retrieves a single event by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the event to retrieve.</param>
+        /// <returns>An <see cref="EventDto"/> representing the event, or null if not found.</returns>
         public async Task<EventDto> GetEvent(int id)
         {
             var eventItem = await _context.Events.FirstOrDefaultAsync(e => e.EventId == id);
@@ -49,6 +61,11 @@ namespace Event_Media_Hub_Group_Project.Services
             };
         }
 
+        /// <summary>
+        /// Creates a new event.
+        /// </summary>
+        /// <param name="eventDto">The <see cref="EventDto"/> containing the event details to create.</param>
+        /// <returns>A <see cref="ServiceResponse"/> indicating the result of the operation.</returns>
         public async Task<ServiceResponse> CreateEvent(EventDto eventDto)
         {
             ServiceResponse serviceResponse = new();
@@ -94,6 +111,12 @@ namespace Event_Media_Hub_Group_Project.Services
             return serviceResponse;
         }
 
+        /// <summary>
+        /// Updates the details of an existing event by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the event to update.</param>
+        /// <param name="eventDto">The <see cref="EventDto"/> containing the updated event details.</param>
+        /// <returns>A <see cref="ServiceResponse"/> indicating the result of the operation.</returns>
         public async Task<ServiceResponse> UpdateEventDetails(int id, EventDto eventDto)
         {
             var existingEvent = await _context.Events.FindAsync(id);
@@ -154,6 +177,11 @@ namespace Event_Media_Hub_Group_Project.Services
             };
         }
 
+        /// <summary>
+        /// Deletes an event by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the event to delete.</param>
+        /// <returns>A <see cref="ServiceResponse"/> indicating the result of the operation.</returns>
         public async Task<ServiceResponse> Deleteevent(int id)
         {
             var eventItem = await _context.Events.FindAsync(id);
@@ -173,11 +201,19 @@ namespace Event_Media_Hub_Group_Project.Services
             };
         }
 
+        /// <summary>
+        /// Retrieves a list of all locations.
+        /// </summary>
+        /// <returns>A list of <see cref="Location"/> representing all locations.</returns>
         public async Task<List<Location>> GetLocations()
         {
             return await _context.Locations.ToListAsync();
         }
 
+        /// <summary>
+        /// Retrieves a list of all users.
+        /// </summary>
+        /// <returns>A list of <see cref="User"/> representing all users.</returns>
         public async Task<List<User>> GetUsers()
         {
             return await _context.Users.ToListAsync();

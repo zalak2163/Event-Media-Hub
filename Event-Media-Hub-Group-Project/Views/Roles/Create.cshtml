@@ -6,12 +6,15 @@
 
 <div class="row" id="CreateRoleRow">
     <div class="col-md-6" id="CreateRoleCol">
+        <!-- Form to create a new role -->
         <form method="post" id="CreateRoleForm">
             <h5 id="CreateRoleTitle">Create New Role</h5>
             <hr id="CreateRoleHr" />
+
+            <!-- Display validation summary for any model errors -->
             <div asp-validation-summary="ModelOnly" class="text-danger" id="ValidationSummary"></div>
 
-            <!-- Role Name -->
+            <!-- Role Name input field -->
             <div class="form-floating" id="RoleNameGroup">
                 <input asp-for="Name" class="form-control" id="RoleNameInput" aria-required="true" />
                 <label asp-for="Name" id="RoleNameLabel"></label>

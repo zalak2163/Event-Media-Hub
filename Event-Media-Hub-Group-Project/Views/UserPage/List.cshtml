@@ -1,30 +1,38 @@
-﻿@model IEnumerable<Event_Media_Hub_Group_Project.Models.UserDto>
+﻿@model IEnumerable<Event_Media_Hub_Group_Project.Models.UserDto>  // This page works with a collection of UserDto objects.
+
 @{
-    ViewData["Title"] = "User List";
+    ViewData["Title"] = "User List";  // Sets the title of the page to "User List"
 }
 
-<h1 class="mb-4">User List</h1>
-
+<h1 class="mb-4">User List</h1>  <!-- Header for the page -->
+<!-- Button to create a new user -->
 <p>
     <a asp-action="New" class="btn btn-success">Create New User</a>
 </p>
 
+<!-- Row to display the list of users -->
 <div class="row">
-    @foreach (var item in Model)
+    @foreach (var item in Model)  // Loops through each user in the passed model (list of users)
     {
         <div class="col-md-4">
+            <!-- Each user is displayed in a 4-column grid on medium screens -->
             <div class="card mb-4">
+                <!-- Card structure for each user -->
                 <div class="card-header">
-                    <h5>@item.UserName</h5>
+                    <h5>@item.UserName</h5>  <!-- Display the user's username -->
                 </div>
                 <div class="card-body">
-                    <p><strong>User ID:</strong> @item.UserId</p>
-                    <p><strong>Email:</strong> @item.Email</p>
-                    <p><strong>Role:</strong> @item.Role</p>
+                    <p><strong>User ID:</strong> @item.UserId</p>  <!-- Display the user's ID -->
+                    <p><strong>Email:</strong> @item.Email</p>  <!-- Display the user's email -->
+                    <p><strong>Role:</strong> @item.Role</p>  <!-- Display the user's role -->
                 </div>
                 <div class="card-footer text-right">
+                    <!-- Footer with action buttons -->
+                    <!-- Edit button: Links to the Edit action for the specific user -->
                     <a asp-action="Edit" asp-route-id="@item.UserId" class="btn btn-sm btn-primary">Edit</a> |
+                    <!-- Details button: Links to the Details action for the specific user -->
                     <a asp-action="Details" asp-route-id="@item.UserId" class="btn btn-sm btn-info">Details</a> |
+                    <!-- Delete button: Links to the ConfirmDelete action for the specific user -->
                     <a asp-action="ConfirmDelete" asp-route-id="@item.UserId" class="btn btn-sm btn-danger">Delete</a>
                 </div>
             </div>
@@ -32,6 +40,7 @@
     }
 </div>
 
+<!-- Button to navigate back to the user list page -->
 <div class="mt-4">
     <a asp-action="List" class="btn btn-secondary">Back to List</a>
 </div>

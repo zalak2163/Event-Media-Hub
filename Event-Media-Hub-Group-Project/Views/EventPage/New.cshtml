@@ -1,75 +1,82 @@
 ﻿@model Event_Media_Hub_Group_Project.Models.EventDto
+
 @{
-    ViewData["Title"] = "New Event";
+    ViewData["Title"] = "New Event"; // Sets the title of the page to "New Event"
 }
 
-<h1>Create New Event</h1>
-
+<h1>Create New Event</h1> <!-- Heading for the page where the user can create a new event -->
+<!-- Container for the event creation form -->
 <div class="row">
     <div class="col-md-6">
+        <!-- Card to display the form for creating a new event -->
         <div class="card">
             <div class="card-header">
-                <h4>Event Details</h4>
+                <h4>Event Details</h4> <!-- Header of the card indicating it's for event details -->
             </div>
             <div class="card-body">
+                <!-- Form to create a new event -->
                 <form asp-controller="EventPage" asp-action="Create" method="post">
+                    <!-- Validation summary to display error messages -->
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                    <!-- Event Name -->
+                    <!-- Event Name Input -->
                     <div class="form-group">
-                        <label asp-for="EventName">Event Name:</label>
-                        <input asp-for="EventName" class="form-control" />
-                        <span asp-validation-for="EventName" class="text-danger"></span>
+                        <label asp-for="EventName">Event Name:</label> <!-- Label for event name -->
+                        <input asp-for="EventName" class="form-control" /> <!-- Input field for event name -->
+                        <span asp-validation-for="EventName" class="text-danger"></span> <!-- Validation error for event name -->
                     </div>
 
-                    <!-- Date -->
+                    <!-- Event Date Input -->
                     <div class="form-group">
-                        <label asp-for="Date">Date:</label>
-                        <input asp-for="Date" class="form-control" type="date" />
-                        <span asp-validation-for="Date" class="text-danger"></span>
+                        <label asp-for="Date">Date:</label> <!-- Label for event date -->
+                        <input asp-for="Date" class="form-control" type="date" /> <!-- Date input field -->
+                        <span asp-validation-for="Date" class="text-danger"></span> <!-- Validation error for event date -->
                     </div>
 
-                    <!-- Description -->
+                    <!-- Event Description Input -->
                     <div class="form-group">
-                        <label asp-for="Description">Description:</label>
-                        <textarea asp-for="Description" class="form-control"></textarea>
-                        <span asp-validation-for="Description" class="text-danger"></span>
+                        <label asp-for="Description">Description:</label> <!-- Label for event description -->
+                        <textarea asp-for="Description" class="form-control"></textarea> <!-- Textarea for event description -->
+                        <span asp-validation-for="Description" class="text-danger"></span> <!-- Validation error for description -->
                     </div>
 
                     <!-- Location Dropdown -->
                     <div class="form-group">
-                        <label asp-for="LocationId">Location:</label>
+                        <label asp-for="LocationId">Location:</label> <!-- Label for event location -->
                         @Html.DropDownListFor(m => m.LocationId,
                                  Model.Locations,
                                  "-- Select Location --",
-                                 new { @class = "form-control" })
-                        <span asp-validation-for="LocationId" class="text-danger"></span>
+                                 new { @class = "form-control" }) <!-- Dropdown for selecting location -->
+                        <span asp-validation-for="LocationId" class="text-danger"></span> <!-- Validation error for location -->
                     </div>
 
                     <!-- User Dropdown -->
                     <div class="form-group">
-                        <label asp-for="UserId">User:</label>
+                        <label asp-for="UserId">User:</label> <!-- Label for event user -->
                         @Html.DropDownListFor(m => m.UserId,
                                  Model.Users,
                                  "-- Select User --",
-                                 new { @class = "form-control" })
-                        <span asp-validation-for="UserId" class="text-danger"></span>
+                                 new { @class = "form-control" }) <!-- Dropdown for selecting user -->
+                        <span asp-validation-for="UserId" class="text-danger"></span> <!-- Validation error for user -->
                     </div>
 
                     <!-- Submit Button -->
-                    <button type="submit" class="btn btn-primary">Create Event</button>
+                    <button type="submit" class="btn btn-primary">Create Event</button> <!-- Button to submit the form and create the event -->
                 </form>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Button to navigate back to the list of events -->
 <div class="mt-3">
     <a asp-action="List" class="btn btn-secondary">Back to List</a>
 </div>
 
+<!-- Validation Scripts Section -->
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        <!-- Renders client-side validation scripts -->
     }
 }

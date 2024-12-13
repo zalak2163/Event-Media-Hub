@@ -5,6 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Event_Media_Hub_Group_Project.Services
 {
+    /// <summary>
+    /// Service for managing locations, including CRUD operations and location details.
+    /// </summary>
     public class LocationService : ILocationService
     {
         private readonly ApplicationDbContext _context;
@@ -14,6 +17,10 @@ namespace Event_Media_Hub_Group_Project.Services
             _context = context;
         }
 
+        /// <summary>
+        /// Retrieves a list of all locations.
+        /// </summary>
+        /// <returns>A list of <see cref="LocationDto"/> representing locations.</returns>
         public async Task<IEnumerable<LocationDto>> ListLocations()
         {
             var locations = await _context.Locations.ToListAsync();
@@ -28,6 +35,11 @@ namespace Event_Media_Hub_Group_Project.Services
             return locationDtos;
         }
 
+        /// <summary>
+        /// Retrieves a single location by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the location to retrieve.</param>
+        /// <returns>A <see cref="LocationDto"/> representing the location, or null if not found.</returns>
         public async Task<LocationDto> GetLocation(int id)
         {
             var location = await _context.Locations.FindAsync(id);
@@ -40,6 +52,11 @@ namespace Event_Media_Hub_Group_Project.Services
             };
         }
 
+        /// <summary>
+        /// Creates a new location.
+        /// </summary>
+        /// <param name="locationDto">The <see cref="LocationDto"/> containing the location details to create.</param>
+        /// <returns>A <see cref="ServiceResponse"/> indicating the result of the operation.</returns>
         public async Task<ServiceResponse> CreateLocation(LocationDto locationDto)
         {
             var serviceResponse = new ServiceResponse();
@@ -61,6 +78,12 @@ namespace Event_Media_Hub_Group_Project.Services
             return serviceResponse;
         }
 
+        /// <summary>
+        /// Updates the details of an existing location by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the location to update.</param>
+        /// <param name="locationDto">The <see cref="LocationDto"/> containing the updated location details.</param>
+        /// <returns>A <see cref="ServiceResponse"/> indicating the result of the operation.</returns>
         public async Task<ServiceResponse> UpdateLocationDetails(int id, LocationDto locationDto)
         {
             var serviceResponse = new ServiceResponse();
@@ -85,6 +108,11 @@ namespace Event_Media_Hub_Group_Project.Services
             return serviceResponse;
         }
 
+        /// <summary>
+        /// Deletes a location by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the location to delete.</param>
+        /// <returns>A <see cref="ServiceResponse"/> indicating the result of the operation.</returns>
         public async Task<ServiceResponse> DeleteLocation(int id)
         {
             var serviceResponse = new ServiceResponse();

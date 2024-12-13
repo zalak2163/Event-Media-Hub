@@ -1,4 +1,5 @@
 ﻿@model Event_Media_Hub_Group_Project.Models.PhotoDto
+
 @{
     ViewData["Title"] = "Photo Details";
 }
@@ -11,42 +12,55 @@
     </div>
     <div class="card-body">
         <dl class="row">
+            <!-- Photo ID -->
             <dt class="col-sm-3">
                 @Html.DisplayNameFor(model => model.PhotoId)
             </dt>
             <dd class="col-sm-9">
                 @Html.DisplayFor(model => model.PhotoId)
             </dd>
+
+            <!-- Photo Title -->
             <dt class="col-sm-3">
                 @Html.DisplayNameFor(model => model.Title)
             </dt>
             <dd class="col-sm-9">
                 @Html.DisplayFor(model => model.Title)
             </dd>
+
+            <!-- Photo Description -->
             <dt class="col-sm-3">
                 @Html.DisplayNameFor(model => model.Description)
             </dt>
             <dd class="col-sm-9">
                 @Html.DisplayFor(model => model.Description)
             </dd>
+
+            <!-- Photo Price -->
             <dt class="col-sm-3">
                 @Html.DisplayNameFor(model => model.Price)
             </dt>
             <dd class="col-sm-9">
                 @Html.DisplayFor(model => model.Price)
             </dd>
+
+            <!-- Upload Date -->
             <dt class="col-sm-3">
                 @Html.DisplayNameFor(model => model.UploadDate)
             </dt>
             <dd class="col-sm-9">
                 @Html.DisplayFor(model => model.UploadDate)
             </dd>
+
+            <!-- User ID -->
             <dt class="col-sm-3">
                 @Html.DisplayNameFor(model => model.UserId)
             </dt>
             <dd class="col-sm-9">
                 @Html.DisplayFor(model => model.UserId)
             </dd>
+
+            <!-- User Name -->
             <dt class="col-sm-3">
                 @Html.DisplayNameFor(model => model.UserName)
             </dt>
@@ -55,6 +69,21 @@
             </dd>
         </dl>
 
+        <!-- Display Photo Image -->
+        @if (!string.IsNullOrEmpty(Model.FilePath))
+        {
+            <div class="mb-3">
+                <strong>Photo Image:</strong>
+                <!-- The image path is dynamic based on the FilePath -->
+                <img src="@Url.Content(Model.FilePath)" alt="Photo Image" class="img-fluid" style="max-width: 100%; height: auto;" />
+            </div>
+        }
+        else
+        {
+            <p>No image available for this photo.</p>
+        }
+
+        <!-- Actions for editing or going back to the list -->
         <div class="d-flex justify-content-between mt-3">
             <a asp-action="Edit" asp-route-id="@Model.PhotoId" class="btn btn-warning">Edit</a>
             <a asp-action="List" class="btn btn-primary">Back to List</a>

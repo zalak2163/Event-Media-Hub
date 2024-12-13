@@ -1,21 +1,35 @@
 ﻿using Event_Media_Hub_Group_Project.Interface;
 using Event_Media_Hub_Group_Project.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Event_Media_Hub_Group_Project.Controllers
 {
+    /// <summary>
+    /// Controller for managing photos in the application. 
+    /// Provides actions for listing, retrieving, creating, updating, and deleting photos.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class PhotoAPIController : ControllerBase
     {
         private readonly IPhotoService _photoService;
 
+        /// <summary>
+        /// Constructor for initializing the PhotoAPIController.
+        /// </summary>
+        /// <param name="photoService">The photo service instance.</param>
         public PhotoAPIController(IPhotoService photoService)
         {
             _photoService = photoService;
         }
 
-        // GET: api/photoapi/list
+        /// <summary>
+        /// Retrieves a list of all photos.
+        /// </summary>
+        /// <returns>A list of photos in the form of PhotoDto.</returns>
+        /// <response code="200">Returns a list of photos</response>
+        /// <response code="404">No photos found</response>
         [HttpGet("List")]
         public async Task<ActionResult<IEnumerable<PhotoDto>>> ListPhotos()
         {
@@ -28,7 +42,13 @@ namespace Event_Media_Hub_Group_Project.Controllers
             return Ok(photos);
         }
 
-        // GET: api/photoapi/{id}
+        /// <summary>
+        /// Retrieves details of a specific photo by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the photo to retrieve.</param>
+        /// <returns>The details of the photo.</returns>
+        /// <response code="200">Returns the photo details</response>
+        /// <response code="404">Photo not found</response>
         [HttpGet("{id}")]
         public async Task<ActionResult<PhotoDto>> GetPhoto(int id)
         {
@@ -42,8 +62,15 @@ namespace Event_Media_Hub_Group_Project.Controllers
             return Ok(photo);
         }
 
-        // POST: api/photoapi/add
+        /// <summary>
+        /// Creates a new photo.
+        /// </summary>
+        /// <param name="photoDto">The details of the photo to create.</param>
+        /// <returns>The created photo details, or an error message if creation fails.</returns>
+        /// <response code="201">Photo created successfully</response>
+        /// <response code="400">Invalid photo data</response>
         [HttpPost("Add")]
+        [Authorize]
         public async Task<ActionResult<ServiceResponse>> CreatePhoto([FromBody] PhotoDto photoDto)
         {
             if (photoDto == null)
@@ -61,8 +88,17 @@ namespace Event_Media_Hub_Group_Project.Controllers
             return BadRequest(serviceResponse);
         }
 
-        // PUT: api/photoapi/update/{id}
+        /// <summary>
+        /// Updates the details of an existing photo.
+        /// </summary>
+        /// <param name="id">The ID of the photo to update.</param>
+        /// <param name="photoDto">The updated details of the photo.</param>
+        /// <returns>The updated photo details or an error message if update fails.</returns>
+        /// <response code="200">Photo updated successfully</response>
+        /// <response code="400">Invalid photo data</response>
+        /// <response code="404">Photo not found</response>
         [HttpPut("Update/{id}")]
+        [Authorize]
         public async Task<ActionResult<ServiceResponse>> UpdatePhotoDetails(int id, [FromBody] PhotoDto photoDto)
         {
             if (photoDto == null)
@@ -85,8 +121,16 @@ namespace Event_Media_Hub_Group_Project.Controllers
             return Ok(serviceResponse);
         }
 
-        // DELETE: api/photoapi/delete/{id}
+        /// <summary>
+        /// Deletes an existing photo by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the photo to delete.</param>
+        /// <returns>A response indicating the result of the deletion.</returns>
+        /// <response code="200">Photo deleted successfully</response>
+        /// <response code="404">Photo not found</response>
+        /// <response code="400">Error during deletion</response>
         [HttpDelete("Delete/{id}")]
+        [Authorize]
         public async Task<ActionResult<ServiceResponse>> DeletePhoto(int id)
         {
             var serviceResponse = await _photoService.DeletePhoto(id);

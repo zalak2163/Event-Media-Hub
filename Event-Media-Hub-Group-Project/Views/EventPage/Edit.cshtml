@@ -1,69 +1,85 @@
 ﻿@model Event_Media_Hub_Group_Project.Models.EventDto
 
 @{
-    ViewData["Title"] = "Edit Event";
+    ViewData["Title"] = "Edit Event"; // Sets the title of the page to "Edit Event"
 }
 
-<h1>Edit Event</h1>
-
+<h1>Edit Event</h1> <!-- Heading for the page -->
+<!-- Main container for the form to edit event details -->
 <div class="row justify-content-center">
     <div class="col-md-8">
+        <!-- Card to hold the form for editing event details -->
         <div class="card">
             <div class="card-header">
+                <!-- Header of the card displaying the section title -->
                 <h5>Edit Event Details</h5>
             </div>
             <div class="card-body">
+                <!-- Form to update event details, bound to the 'Update' action -->
                 <form asp-action="Update" asp-route-id="@Model.EventId">
+                    <!-- Validation summary for displaying validation errors -->
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <!-- Hidden input to store EventId -->
                     <input type="hidden" asp-for="EventId" />
 
-                    <!-- Event Name -->
+                    <!-- Event Name field -->
                     <div class="form-group">
                         <label asp-for="EventName" class="control-label">Event Name:</label>
+                        <!-- Input field for Event Name -->
                         <input asp-for="EventName" class="form-control" placeholder="@Model.EventName" />
+                        <!-- Validation message for Event Name -->
                         <span asp-validation-for="EventName" class="text-danger"></span>
                     </div>
 
-                    <!-- Event Date -->
+                    <!-- Event Date field -->
                     <div class="form-group">
                         <label asp-for="Date" class="control-label">Date:</label>
+                        <!-- Input field for Event Date, with date format -->
                         <input asp-for="Date" class="form-control" placeholder="@Model.Date.ToString("yyyy-MM-dd")" type="date" />
+                        <!-- Validation message for Event Date -->
                         <span asp-validation-for="Date" class="text-danger"></span>
                     </div>
 
-                    <!-- Event Description -->
+                    <!-- Event Description field -->
                     <div class="form-group">
                         <label asp-for="Description" class="control-label">Description:</label>
+                        <!-- Input field for Event Description -->
                         <input asp-for="Description" class="form-control" placeholder="@Model.Description" />
+                        <!-- Validation message for Event Description -->
                         <span asp-validation-for="Description" class="text-danger"></span>
                     </div>
 
-                    <!-- Location Dropdown -->
+                    <!-- Location dropdown for selecting location -->
                     <div class="form-group">
                         <label asp-for="LocationId" class="control-label">Location:</label>
+                        <!-- Drop-down list for Location selection -->
                         @Html.DropDownListFor(m => m.LocationId,
                                  Model.Locations,
                                  "-- Select Location --",
                                  new { @class = "form-control" })
+                        <!-- Validation message for Location -->
                         <span asp-validation-for="LocationId" class="text-danger"></span>
                     </div>
 
-                    <!-- User Dropdown -->
+                    <!-- User dropdown for selecting user -->
                     <div class="form-group">
                         <label asp-for="UserId" class="control-label">User:</label>
+                        <!-- Drop-down list for User selection -->
                         @Html.DropDownListFor(m => m.UserId,
                                  Model.Users,
                                  "-- Select User --",
                                  new { @class = "form-control" })
+                        <!-- Validation message for User -->
                         <span asp-validation-for="UserId" class="text-danger"></span>
                     </div>
 
-                    <!-- Submit Button -->
+                    <!-- Submit button to save the changes -->
                     <div class="form-group">
                         <input type="submit" value="Save" class="btn btn-primary" />
                     </div>
                 </form>
             </div>
+            <!-- Footer of the card with the "Back to List" button -->
             <div class="card-footer text-right">
                 <a asp-action="List" class="btn btn-secondary btn-sm">Back to List</a>
             </div>
@@ -71,6 +87,7 @@
     </div>
 </div>
 
+<!-- Section for rendering validation scripts -->
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

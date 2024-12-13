@@ -1,57 +1,62 @@
-﻿@model Event_Media_Hub_Group_Project.Models.PhotoDto
+﻿@model IEnumerable<Event_Media_Hub_Group_Project.Models.PhotoDto>
+
 @{
-    ViewData["Title"] = "Create New Photo";
+    ViewData["Title"] = "List of Photos";
 }
 
-<h1 id="CreatePhotoTitle">Create New Photo</h1>
-<hr />
+<h1 class="mb-4">Photos</h1>
+
+<p>
+    <!-- Button to create a new photo -->
+    <a asp-action="New" class="btn btn-success">Create New Photo</a>
+</p>
+
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" method="post" id="CreatePhotoForm">
-            <div asp-validation-summary="ModelOnly" class="text-danger" id="ValidationSummary"></div>
+    <!-- Loop through each photo in the model -->
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <!-- Card to display each photo's details -->
+            <div class="card mb-4" style="width: 18rem;">
 
-            <!-- Title -->
-            <div class="form-group" id="TitleGroup">
-                <label asp-for="Title" class="control-label" id="TitleLabel">Title:</label>
-                <input asp-for="Title" class="form-control" placeholder="Enter photo title" id="TitleInput" />
-                <span asp-validation-for="Title" class="text-danger" id="TitleValidation"></span>
-            </div>
+                <!-- Conditional rendering for the photo image -->
+                @* Check if the FilePath is not empty, and display the image accordingly *@
+                @if (!string.IsNullOrEmpty(item.FilePath))
+                {
+                    <img src="@Url.Content(item.FilePath)" class="card-img-top" alt="@item.Title" />
+                }
+                else
+                {
+                    <img src="@Url.Content("~/images/default.jpg")" class="card-img-top" alt="No Image Available" />
+                }
 
-            <!-- Description -->
-            <div class="form-group" id="DescriptionGroup">
-                <label asp-for="Description" class="control-label" id="DescriptionLabel">Description:</label>
-                <input asp-for="Description" class="form-control" placeholder="Enter photo description" id="DescriptionInput" />
-                <span asp-validation-for="Description" class="text-danger" id="DescriptionValidation"></span>
-            </div>
+                <div class="card-body">
+                    <!-- Display photo title -->
+                    <h5 class="card-title">@item.Title</h5>
 
-            <!-- Price -->
-            <div class="form-group" id="PriceGroup">
-                <label asp-for="Price" class="control-label" id="PriceLabel">Price:</label>
-                <input asp-for="Price" class="form-control" type="number" step="0.01" placeholder="Enter photo price" id="PriceInput" />
-                <span asp-validation-for="Price" class="text-danger" id="PriceValidation"></span>
-            </div>
+                    <!-- Display additional details about the photo -->
+                    <p class="card-text"><strong>Photo ID:</strong> @item.PhotoId</p>
+                    <p class="card-text"><strong>Description:</strong> @item.Description</p>
+                    <p class="card-text"><strong>Price:</strong> @item.Price</p>
+                    <p class="card-text"><strong>Upload Date:</strong> @item.UploadDate.ToString("yyyy-MM-dd")</p>
+                    <p class="card-text"><strong>User:</strong> @item.UserName</p>
+                </div>
 
-            <!-- UserId -->
-            <div class="form-group" id="UserIdGroup">
-                <label asp-for="UserId" class="control-label" id="UserIdLabel">User:</label>
-                <input asp-for="UserId" class="form-control" placeholder="Enter user ID" id="UserIdInput" />
-                <span asp-validation-for="UserId" class="text-danger" id="UserIdValidation"></span>
+                <!-- Footer with action buttons for Edit, Details, and Delete -->
+                <div class="card-footer text-right">
+                    <!-- Link to Edit photo -->
+                    <a asp-action="Edit" asp-route-id="@item.PhotoId" class="btn btn-sm btn-primary">Edit</a> |
+                    <!-- Link to view photo details -->
+                    <a asp-action="Details" asp-route-id="@item.PhotoId" class="btn btn-sm btn-info">Details</a> |
+                    <!-- Link to confirm deletion of the photo -->
+                    <a asp-action="ConfirmDelete" asp-route-id="@item.PhotoId" class="btn btn-sm btn-danger">Delete</a>
+                </div>
             </div>
-
-            <!-- UserName -->
-            <div class="form-group" id="UserNameGroup">
-                <label asp-for="UserName" class="control-label" id="UserNameLabel">User Name:</label>
-                <input asp-for="UserName" class="form-control" placeholder="Enter user name" id="UserNameInput" />
-                <span asp-validation-for="UserName" class="text-danger" id="UserNameValidation"></span>
-            </div>
-
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" id="CreateButton" />
-            </div>
-        </form>
-    </div>
+        </div>
+    }
 </div>
 
-<div>
-    <a asp-action="List" class="btn btn-secondary" id="BackToListButton">Back to List</a>
+<div class="mt-4">
+    <!-- Button to go back to the list of photos -->
+    <a asp-action="List" class="btn btn-secondary">Back to List</a>
 </div>

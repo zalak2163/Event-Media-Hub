@@ -1,26 +1,40 @@
 ﻿@model Event_Media_Hub_Group_Project.Models.CategoryDto
 @{
-    ViewData["Title"] = "Edit Category";
+    ViewData["Title"] = "Edit Category";  // Set the page title to "Edit Category"
 }
 
-<h1 id="edit-category-title">Edit Category</h1>
+<h1 id="edit-category-title">Edit Category</h1>  <!-- Main heading indicating this is the category edit page -->
 
 <div id="edit-category-card" class="card">
     <div class="card-header">
-        <h4 id="category-title">Category</h4>
+        <h4 id="category-title">Category</h4>  <!-- Subheading indicating the category details section -->
     </div>
     <div class="card-body">
-        <hr />
+        <hr />  <!-- A horizontal line separating the form from the rest of the page -->
         <div class="row">
             <div class="col-md-8">
+                <!-- Form to update the category details -->
                 <form asp-action="Update" asp-route-id="@Model.CategoryId" id="edit-category-form">
+
+                    <!-- Validation summary for model errors -->
                     <div asp-validation-summary="ModelOnly" class="text-danger" id="validation-summary"></div>
+
+                    <!-- Hidden field to hold CategoryId -->
                     <input type="hidden" asp-for="CategoryId" />
+
+                    <!-- Category Name Input -->
                     <div class="form-group" id="category-name-group">
+                        <!-- Label for Category Name -->
                         <label asp-for="CategoryName" class="control-label" id="category-name-label">Category Name:</label>
+
+                        <!-- Input field for Category Name, pre-filled with the current value -->
                         <input asp-for="CategoryName" class="form-control" placeholder="@Model.CategoryName" id="category-name-input" />
+
+                        <!-- Display validation errors for Category Name -->
                         <span asp-validation-for="CategoryName" class="text-danger" id="category-name-error"></span>
                     </div>
+
+                    <!-- Submit button to save changes -->
                     <div class="form-group">
                         <input type="submit" value="Save" class="btn btn-primary" id="save-button" />
                     </div>
@@ -28,13 +42,25 @@
             </div>
         </div>
     </div>
+
     <div class="card-footer">
+        <!-- Button to navigate back to the list of categories -->
         <a asp-action="List" class="btn btn-secondary" id="back-to-list-button">Back to List</a>
     </div>
 </div>
 
 @section Scripts {
+    @* Partial view to render the validation scripts for client-side validation *@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+@*
+    This view is used to edit the details of a specific category. It includes:
+    - A form where the user can update the category name.
+    - A hidden field to track the CategoryId.
+    - A save button to submit the changes.
+    - Client-side validation scripts included at the end.
+    - A link to navigate back to the category list.
+*@

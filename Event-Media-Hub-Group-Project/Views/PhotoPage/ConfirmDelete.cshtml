@@ -1,4 +1,5 @@
 ﻿@model Event_Media_Hub_Group_Project.Models.PhotoDto
+
 @{
     ViewData["Title"] = "Confirm Delete";
 }
@@ -13,36 +14,47 @@
         <h5>Photo Details</h5>
         <hr />
         <dl class="row">
+            <!-- Photo Title -->
             <dt class="col-sm-3">
                 @Html.DisplayNameFor(model => model.Title)
             </dt>
             <dd class="col-sm-9">
                 @Html.DisplayFor(model => model.Title)
             </dd>
+
+            <!-- Photo Description -->
             <dt class="col-sm-3">
                 @Html.DisplayNameFor(model => model.Description)
             </dt>
             <dd class="col-sm-9">
                 @Html.DisplayFor(model => model.Description)
             </dd>
+
+            <!-- Photo Price -->
             <dt class="col-sm-3">
                 @Html.DisplayNameFor(model => model.Price)
             </dt>
             <dd class="col-sm-9">
                 @Html.DisplayFor(model => model.Price)
             </dd>
+
+            <!-- Upload Date -->
             <dt class="col-sm-3">
                 @Html.DisplayNameFor(model => model.UploadDate)
             </dt>
             <dd class="col-sm-9">
                 @Html.DisplayFor(model => model.UploadDate)
             </dd>
+
+            <!-- User ID -->
             <dt class="col-sm-3">
                 @Html.DisplayNameFor(model => model.UserId)
             </dt>
             <dd class="col-sm-9">
                 @Html.DisplayFor(model => model.UserId)
             </dd>
+
+            <!-- User Name -->
             <dt class="col-sm-3">
                 @Html.DisplayNameFor(model => model.UserName)
             </dt>
@@ -51,6 +63,7 @@
             </dd>
         </dl>
 
+        <!-- Confirmation buttons for delete or return to list -->
         <div class="d-flex justify-content-between">
             <form asp-action="Delete" asp-route-id="@Model.PhotoId">
                 <input type="hidden" asp-for="PhotoId" />
@@ -61,3 +74,8 @@
     </div>
 </div>
 
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

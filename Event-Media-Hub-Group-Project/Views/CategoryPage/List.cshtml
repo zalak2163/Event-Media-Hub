@@ -1,26 +1,30 @@
 ﻿@model IEnumerable<Event_Media_Hub_Group_Project.Models.CategoryDto>
+
 @{
     ViewData["Title"] = "Category List";
 }
 
 <h1 class="mb-4">Categories</h1>
 
+<!-- Button to create a new category -->
 <p>
     <a asp-action="New" class="btn btn-success">Create New Category</a>
 </p>
 
 <div class="row">
+    <!-- Loop through each category item in the model and display details -->
     @foreach (var item in Model)
     {
         <div class="col-md-4">
             <div class="card mb-4">
                 <div class="card-header">
-                    <h5>@item.CategoryName</h5>
+                    <h5>@item.CategoryName</h5> <!-- Display the category name -->
                 </div>
                 <div class="card-body">
-                    <p><strong>Category ID:</strong> @item.CategoryId</p>
+                    <p><strong>Category ID:</strong> @item.CategoryId</p> <!-- Display the category ID -->
                 </div>
                 <div class="card-footer text-right">
+                    <!-- Action buttons for editing, viewing details, and deleting a category -->
                     <a asp-action="Edit" asp-route-id="@item.CategoryId" class="btn btn-sm btn-primary">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.CategoryId" class="btn btn-sm btn-info">Details</a> |
                     <a asp-action="ConfirmDelete" asp-route-id="@item.CategoryId" class="btn btn-sm btn-danger">Delete</a>
@@ -30,6 +34,13 @@
     }
 </div>
 
+<!-- Back button to return to the list view -->
 <div class="mt-4">
     <a asp-action="List" class="btn btn-secondary">Back to List</a>
 </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

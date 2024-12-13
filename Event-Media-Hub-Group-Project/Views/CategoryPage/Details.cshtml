@@ -1,34 +1,45 @@
 ﻿@model Event_Media_Hub_Group_Project.Models.CategoryDto
 @{
-    ViewData["Title"] = "Category Details";
+    ViewData["Title"] = "Category Details";  // Sets the title of the page to "Category Details"
 }
 
-<h1 id="category-details-title">Category Details</h1>
+<h1 id="category-details-title">Category Details</h1>  <!-- Main heading of the page -->
 
 <div id="category-details-card" class="card">
     <div class="card-header">
-        <h4 id="category-title">Category</h4>
+        <h4 id="category-title">Category</h4>  <!-- Subheading indicating the category details section -->
     </div>
     <div class="card-body">
-        <hr />
+        <hr />  <!-- A horizontal line separating the category information from the rest of the page -->
         <dl class="row" id="category-info">
+            <!-- Category ID -->
             <dt class="col-sm-2" id="category-id-label">
-                @Html.DisplayNameFor(model => model.CategoryId)
+                @Html.DisplayNameFor(model => model.CategoryId)  <!-- Label for CategoryId -->
             </dt>
             <dd class="col-sm-10" id="category-id-value">
-                @Html.DisplayFor(model => model.CategoryId)
+                @Html.DisplayFor(model => model.CategoryId)  <!-- Value of CategoryId -->
             </dd>
 
+            <!-- Category Name -->
             <dt class="col-sm-2" id="category-name-label">
-                @Html.DisplayNameFor(model => model.CategoryName)
+                @Html.DisplayNameFor(model => model.CategoryName)  <!-- Label for CategoryName -->
             </dt>
             <dd class="col-sm-10" id="category-name-value">
-                @Html.DisplayFor(model => model.CategoryName)
+                @Html.DisplayFor(model => model.CategoryName)  <!-- Value of CategoryName -->
             </dd>
         </dl>
     </div>
     <div class="card-footer">
+        <!-- Edit Button, which links to the Edit action for the current category -->
         <a asp-action="Edit" asp-route-id="@Model.CategoryId" class="btn btn-edit" id="edit-button">Edit</a> |
+        <!-- Back to List Button, which links back to the list of categories -->
         <a asp-action="List" class="btn btn-primary" id="back-to-list-button">Back to List</a>
     </div>
 </div>
+
+@*
+    This view displays the details of a single category, including:
+    - Category ID
+    - Category Name
+    The user can navigate to edit the category or return to the list of categories using the buttons provided.
+*@

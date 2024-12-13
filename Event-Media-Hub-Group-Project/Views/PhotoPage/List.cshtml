@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Event_Media_Hub_Group_Project.Models.PhotoDto>
+
 @{
     ViewData["Title"] = "List of Photos";
 }
@@ -6,19 +7,34 @@
 <h1 class="mb-4">Photos</h1>
 
 <p>
+    <!-- Button to create a new photo -->
     <a asp-action="New" class="btn btn-success">Create New Photo</a>
 </p>
 
 <div class="row">
+    <!-- Loop through each photo in the model -->
     @foreach (var item in Model)
     {
         <div class="col-md-4">
+            <!-- Card to display each photo's details -->
             <div class="card mb-4" style="width: 18rem;">
-                @* Display the image at the top of the card *@
-                <img src="@Url.Content("~/images/zalak.JPG")" class="card-img-top" alt="@item.Title" />
+
+                <!-- Conditional rendering for the photo image -->
+                @* Check if the FilePath is not empty, and display the image accordingly *@
+                @if (!string.IsNullOrEmpty(item.FilePath))
+                {
+                    <img src="@Url.Content(item.FilePath)" class="card-img-top" alt="@item.Title" />
+                }
+                else
+                {
+                    <img src="@Url.Content("~/images/default.jpg")" class="card-img-top" alt="No Image Available" />
+                }
 
                 <div class="card-body">
+                    <!-- Display photo title -->
                     <h5 class="card-title">@item.Title</h5>
+
+                    <!-- Display additional details about the photo -->
                     <p class="card-text"><strong>Photo ID:</strong> @item.PhotoId</p>
                     <p class="card-text"><strong>Description:</strong> @item.Description</p>
                     <p class="card-text"><strong>Price:</strong> @item.Price</p>
@@ -26,9 +42,13 @@
                     <p class="card-text"><strong>User:</strong> @item.UserName</p>
                 </div>
 
+                <!-- Footer with action buttons for Edit, Details, and Delete -->
                 <div class="card-footer text-right">
+                    <!-- Link to Edit photo -->
                     <a asp-action="Edit" asp-route-id="@item.PhotoId" class="btn btn-sm btn-primary">Edit</a> |
+                    <!-- Link to view photo details -->
                     <a asp-action="Details" asp-route-id="@item.PhotoId" class="btn btn-sm btn-info">Details</a> |
+                    <!-- Link to confirm deletion of the photo -->
                     <a asp-action="ConfirmDelete" asp-route-id="@item.PhotoId" class="btn btn-sm btn-danger">Delete</a>
                 </div>
             </div>
@@ -37,5 +57,6 @@
 </div>
 
 <div class="mt-4">
+    <!-- Button to go back to the list of photos -->
     <a asp-action="List" class="btn btn-secondary">Back to List</a>
 </div>

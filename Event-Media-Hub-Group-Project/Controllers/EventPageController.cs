@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Event_Media_Hub_Group_Project.Controllers
 {
+    /// <summary>
+    /// Controller for managing event pages.
+    /// Provides functionality for listing, viewing, creating, editing, and deleting events.
+    /// </summary>
     public class EventPageController : Controller
     {
         private readonly IEventService _eventService;
@@ -16,13 +20,19 @@ namespace Event_Media_Hub_Group_Project.Controllers
             _eventService = eventService;
         }
 
-        // Index action (optional)
+        /// <summary>
+        /// Displays the index page of the event.
+        /// </summary>
+        /// <returns>View of the event index page.</returns>
         public IActionResult Index()
         {
             return View();
         }
 
-        // List of Events
+        /// <summary>
+        /// Retrieves and displays a list of all events.
+        /// </summary>
+        /// <returns>A view with a list of events.</returns>
         [HttpGet]
         public async Task<IActionResult> List()
         {
@@ -30,7 +40,11 @@ namespace Event_Media_Hub_Group_Project.Controllers
             return View(events);
         }
 
-        // Details of an Event
+        /// <summary>
+        /// Displays the details of a specific event based on its ID.
+        /// </summary>
+        /// <param name="id">The ID of the event to retrieve.</param>
+        /// <returns>A view displaying the event details if found; otherwise, an error view.</returns>
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
@@ -42,7 +56,10 @@ namespace Event_Media_Hub_Group_Project.Controllers
             return View(eventDto);
         }
 
-        // New Event Form
+        /// <summary>
+        /// Displays the form to create a new event.
+        /// </summary>
+        /// <returns>A view with the event creation form, including location and user dropdowns.</returns>
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> New()
@@ -69,7 +86,11 @@ namespace Event_Media_Hub_Group_Project.Controllers
             return View(model);
         }
 
-        // Create Event (POST)
+        /// <summary>
+        /// Creates a new event.
+        /// </summary>
+        /// <param name="eventDto">The details of the event to create.</param>
+        /// <returns>Redirects to the details page of the newly created event if successful; otherwise, shows an error.</returns>
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> Create(EventDto eventDto)
@@ -86,7 +107,11 @@ namespace Event_Media_Hub_Group_Project.Controllers
             }
         }
 
-        // Edit Event Form (GET)
+        /// <summary>
+        /// Displays the form to edit an existing event.
+        /// </summary>
+        /// <param name="id">The ID of the event to edit.</param>
+        /// <returns>A view with the event edit form, including location and user dropdowns, or an error view if the event is not found.</returns>
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> Edit(int id)
@@ -117,7 +142,12 @@ namespace Event_Media_Hub_Group_Project.Controllers
             return View(eventDto);
         }
 
-        // Update Event (POST)
+        /// <summary>
+        /// Updates the details of an existing event.
+        /// </summary>
+        /// <param name="id">The ID of the event to update.</param>
+        /// <param name="eventDto">The updated event details.</param>
+        /// <returns>Redirects to the details page of the updated event if successful; otherwise, shows an error.</returns>
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> Update(int id, EventDto eventDto)
@@ -134,7 +164,11 @@ namespace Event_Media_Hub_Group_Project.Controllers
             }
         }
 
-        // Confirm Event Deletion (GET)
+        /// <summary>
+        /// Confirms event deletion by displaying the event details before deletion.
+        /// </summary>
+        /// <param name="id">The ID of the event to delete.</param>
+        /// <returns>A view with the event details for confirmation before deletion, or an error view if the event is not found.</returns>
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> ConfirmDelete(int id)
@@ -147,7 +181,11 @@ namespace Event_Media_Hub_Group_Project.Controllers
             return View(eventDto);
         }
 
-        // Delete Event (POST)
+        /// <summary>
+        /// Deletes a specific event.
+        /// </summary>
+        /// <param name="id">The ID of the event to delete.</param>
+        /// <returns>Redirects to the event list page if successful; otherwise, shows an error.</returns>
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> Delete(int id)

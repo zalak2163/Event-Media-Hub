@@ -1,11 +1,12 @@
 ﻿@model Event_Media_Hub_Group_Project.Models.UserDto
 
 @{
-    ViewData["Title"] = "User Details";
+    ViewData["Title"] = "User Details";  // Setting the title for the page
 }
 
 <h1 class="mb-4">User Details</h1>
 
+<!-- Container for displaying the user details in a centered card -->
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card">
@@ -13,12 +14,14 @@
                 <h5>User Information</h5>
             </div>
             <div class="card-body">
+                <!-- Displaying the user details -->
                 <p><strong>User ID:</strong> @Model.UserId</p>
                 <p><strong>User Name:</strong> @Model.UserName</p>
                 <p><strong>Email:</strong> @Model.Email</p>
                 <p><strong>Role:</strong> @Model.Role</p>
             </div>
             <div class="card-footer text-right">
+                <!-- Buttons for editing and going back to the list -->
                 <a asp-action="Edit" asp-route-id="@Model.UserId" class="btn btn-sm btn-primary">Edit</a> |
                 <a asp-action="List" class="btn btn-sm btn-secondary">Back to List</a>
             </div>

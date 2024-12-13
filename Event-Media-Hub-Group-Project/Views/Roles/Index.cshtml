@@ -7,12 +7,15 @@
 <h1>Application Roles</h1>
 
 <p>
+    <!-- Link to create a new role -->
     <a asp-action="Create" class="btn btn-primary">Create New Role</a>
 </p>
 
+<!-- Table to display the list of roles -->
 <table class="table table-bordered">
     <thead>
         <tr>
+            <!-- Column headers for Role Id, Name, Normalized Name, and Actions -->
             <th>@Html.DisplayNameFor(model => model.First().Id)</th>
             <th>@Html.DisplayNameFor(model => model.First().Name)</th>
             <th>@Html.DisplayNameFor(model => model.First().NormalizedName)</th>
@@ -20,18 +23,20 @@
         </tr>
     </thead>
     <tbody>
+        <!-- Loop through each role and display its details in the table -->
         @foreach (var item in Model)
         {
             <tr>
+                <!-- Display role details (Id, Name, and Normalized Name) -->
                 <td>@Html.DisplayFor(modelitem => item.Id)</td>
                 <td>@Html.DisplayFor(modelitem => item.Name)</td>
                 <td>@Html.DisplayFor(modelitem => item.NormalizedName)</td>
                 <td>
-                    <!-- Edit Link -->
+                    <!-- Edit Link: Redirects to the edit action for the selected role -->
                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a> |
-                    <!-- Details Link -->
+                    <!-- Details Link: Redirects to the details action for the selected role -->
                     <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a> |
-                    <!-- Delete Link -->
+                    <!-- Delete Link: Redirects to the confirm delete action for the selected role -->
                     <a asp-action="ConfirmDelete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
                 </td>
             </tr>

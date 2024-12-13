@@ -1,31 +1,43 @@
 ﻿@model IEnumerable<Event_Media_Hub_Group_Project.Models.EventDto>
+
 @{
-    ViewData["Title"] = "Event List";
+    ViewData["Title"] = "Event List"; // Sets the title of the page to "Event List"
 }
 
-<h1>Events</h1>
-
+<h1>Events</h1> <!-- Heading for the page displaying all events -->
+<!-- Button to create a new event, linking to the "New" action -->
 <p>
     <a asp-action="New" class="btn-create">Create New Event</a>
 </p>
 
+<!-- Container to display all events as a grid -->
 <div class="row">
     @foreach (var item in Model)
     {
+        <!-- For each event, a new column is created to display the event's information -->
         <div class="col-md-4">
+            <!-- Card to display each event's details -->
             <div class="card mb-4">
+                <!-- Card Header containing the event name and its date -->
                 <div class="card-header">
-                    <h5>@item.EventName</h5>
-                    <p class="text-muted">@item.Date.ToString("yyyy-MM-dd")</p>
+                    <h5>@item.EventName</h5> <!-- Displays the name of the event -->
+                    <p class="text-muted">@item.Date.ToString("yyyy-MM-dd")</p> <!-- Displays the date of the event in a formatted manner -->
                 </div>
                 <div class="card-body">
-                    <p><strong>Description:</strong> @item.Description</p>
-                    <p><strong>Location:</strong> @item.LocationName</p>
-                    <p><strong>User:</strong> @item.UserName</p>
+                    <!-- Event Description -->
+                    <p><strong>Description:</strong> @item.Description</p> <!-- Shows the description of the event -->
+                    <!-- Event Location -->
+                    <p><strong>Location:</strong> @item.LocationName</p> <!-- Shows the location name for the event -->
+                    <!-- Event User -->
+                    <p><strong>User:</strong> @item.UserName</p> <!-- Shows the name of the user associated with the event -->
                 </div>
+                <!-- Card Footer containing action buttons (Edit, Details, and Delete) -->
                 <div class="card-footer text-right">
+                    <!-- Button to navigate to the "Edit" page for the selected event -->
                     <a asp-action="Edit" asp-route-id="@item.EventId" class="btn btn-sm btn-primary">Edit</a> |
+                    <!-- Button to navigate to the "Details" page for the selected event -->
                     <a asp-action="Details" asp-route-id="@item.EventId" class="btn btn-sm btn-info">Details</a> |
+                    <!-- Button to confirm deletion of the selected event -->
                     <a asp-action="ConfirmDelete" asp-route-id="@item.EventId" class="btn btn-sm btn-danger">Delete</a>
                 </div>
             </div>

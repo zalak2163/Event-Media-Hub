@@ -5,6 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Event_Media_Hub_Group_Project.Services
 {
+    /// <summary>
+    /// Service for managing photos, including CRUD operations and photo details.
+    /// </summary>
     public class PhotoService : IPhotoService
     {
         private readonly ApplicationDbContext _context;
@@ -14,6 +17,10 @@ namespace Event_Media_Hub_Group_Project.Services
             _context = context;
         }
 
+        /// <summary>
+        /// Retrieves a list of all photos.
+        /// </summary>
+        /// <returns>A list of <see cref="PhotoDto"/> representing photos.</returns>
         public async Task<IEnumerable<PhotoDto>> ListPhotos()
         {
             var photos = await _context.Photos
@@ -33,6 +40,11 @@ namespace Event_Media_Hub_Group_Project.Services
             return photoDtos;
         }
 
+        /// <summary>
+        /// Retrieves a specific photo by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the photo to retrieve.</param>
+        /// <returns>A <see cref="PhotoDto"/> representing the photo, or null if not found.</returns>
         public async Task<PhotoDto?> GetPhoto(int id)
         {
             var photo = await _context.Photos
@@ -55,6 +67,11 @@ namespace Event_Media_Hub_Group_Project.Services
             };
         }
 
+        /// <summary>
+        /// Creates a new photo.
+        /// </summary>
+        /// <param name="photoDto">The <see cref="PhotoDto"/> containing the photo details to create.</param>
+        /// <returns>A <see cref="ServiceResponse"/> indicating the result of the operation.</returns>
         public async Task<ServiceResponse> CreatePhoto(PhotoDto photoDto)
         {
             var serviceResponse = new ServiceResponse();
@@ -97,6 +114,12 @@ namespace Event_Media_Hub_Group_Project.Services
             return serviceResponse;
         }
 
+        /// <summary>
+        /// Updates the details of an existing photo by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the photo to update.</param>
+        /// <param name="photoDto">The <see cref="PhotoDto"/> containing the updated photo details.</param>
+        /// <returns>A <see cref="ServiceResponse"/> indicating the result of the operation.</returns>
         public async Task<ServiceResponse> UpdatePhotoDetails(int id, PhotoDto photoDto)
         {
             var serviceResponse = new ServiceResponse();
@@ -152,6 +175,11 @@ namespace Event_Media_Hub_Group_Project.Services
             return serviceResponse;
         }
 
+        /// <summary>
+        /// Deletes a photo by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the photo to delete.</param>
+        /// <returns>A <see cref="ServiceResponse"/> indicating the result of the operation.</returns>
         public async Task<ServiceResponse> DeletePhoto(int id)
         {
             var serviceResponse = new ServiceResponse();
